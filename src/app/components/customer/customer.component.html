@@ -1,0 +1,10 @@
+<div *ngIf="!dataLoaded">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Musteriler Yukleniyor...</span>
+  </div>
+</div>
+
+<div *ngIf="dataLoaded">
+  <h2>{{ title }}</h2>
+  <div *ngFor="let customer of customers">{{ customer.userID }}</div>
+</div>

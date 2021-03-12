@@ -1,0 +1,39 @@
+<div class="row mt-4">
+  <div class="col-md-3">
+    <div class="mb-4"><app-color></app-color></div>
+    <div class="mb-4"><app-brand></app-brand></div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="row">
+      <div
+        *ngFor="let car of carsDto"
+        class="card mb-3 me-3"
+        style="width: 18rem"
+      >
+        <div
+          class="d-flex align-items-center justify-content-center"
+          style="height: 10em"
+        >
+          <img
+            [src]="imageUrl + car.imagePaths[0]"
+            class="img"
+            alt="..."
+            style="max-height: 100%; max-width: 100%"
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ car.carName }}</h5>
+          <p class="card-text">
+            <b>Marka: </b>{{ car.brandName }} <br />
+            <b>Renk: </b>{{ car.colorName }} <br />
+            <b>Fiyat: </b> {{ car.dailyPrice | currency: "TRY " }}/Gunluk
+          </p>
+          <a routerLink="/carDetail/{{ car.carID }}" class="btn btn-primary"
+            >Detayina bak</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
