@@ -21,7 +21,7 @@ export class CarDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-        this.getCarDtoByID(params['carID']);
+        this.getCarDtoByID(params['carID'])!!;
         this.dataLoaded = true;
       })
   }

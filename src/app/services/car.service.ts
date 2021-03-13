@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CarDtoResponseModel } from '../models/carDtoResponseModel';
-import { CarResponseModel } from '../models/carResponseModel';
-import { CarsDtoResponseModel } from '../models/carsDtoResponseModel';
-import { CarsResponseModel } from '../models/carsResponseModel';
+import { Car } from '../models/car';
+import { CarDto } from '../models/carDto';
+import { ItemResponseModel } from '../models/itemResponseModel';
+import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable()
 export class CarService {
@@ -14,20 +14,20 @@ export class CarService {
 
   path =  environment.apiURL + '/api/cars';
 
-  getCars(): Observable<CarsResponseModel> {
-    return this.httpClient.get<CarsResponseModel>(this.path + '/getall');
+  getCars(): Observable<ListResponseModel<Car>> {
+    return this.httpClient.get<ListResponseModel<Car>>(this.path + '/getall');
   }
 
-  getCarByID(carID: string): Observable<CarResponseModel>{
-    return this.httpClient.get<CarResponseModel>(this.path + '/getbyid?id=' + carID);
+  getCarByID(carID: string): Observable<ItemResponseModel<Car>>{
+    return this.httpClient.get<ItemResponseModel<Car>>(this.path + '/getbyid?id=' + carID);
   }
 
-  getCarDetails(): Observable<CarsDtoResponseModel> {
-    return this.httpClient.get<CarsDtoResponseModel>(this.path + '/getcardetails');
+  getCarDetails(): Observable<ListResponseModel<CarDto>> {
+    return this.httpClient.get<ListResponseModel<CarDto>>(this.path + '/getcardetails');
   }
 
-  getCarDtoByID(carID: string): Observable<CarDtoResponseModel>{
-    return this.httpClient.get<CarDtoResponseModel>(this.path + '/getdtobyid?id=' + carID);
+  getCarDtoByID(carID: string): Observable<ItemResponseModel<CarDto>>{
+    return this.httpClient.get<ItemResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
   }
   
 }

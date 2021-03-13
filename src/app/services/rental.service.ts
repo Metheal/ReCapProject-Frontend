@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RentalResponseModel } from '../models/rentalResponseModel';
-import { RentalsDtoResponseModel } from '../models/rentalsDtoResponseModel';
+import { ItemResponseModel } from '../models/itemResponseModel';
+import { ListResponseModel } from '../models/listResponseModel';
+import { Rental } from '../models/rental';
+import { RentalDto } from '../models/rentalDto';
 
 @Injectable()
 export class RentalService {
@@ -11,11 +13,11 @@ export class RentalService {
 
   path = environment.apiURL + '/api/rentals';
 
-  getRentals(): Observable<RentalResponseModel> {
-    return this.httpClient.get<RentalResponseModel>(this.path + '/getall');
+  getRentals(): Observable<ListResponseModel<Rental>> {
+    return this.httpClient.get<ListResponseModel<Rental>>(this.path + '/getall');
   }
 
-  getRentalDetails(): Observable<RentalsDtoResponseModel> {
-    return this.httpClient.get<RentalsDtoResponseModel>(this.path + '/getrentaldetails');
+  getRentalDetails(): Observable<ListResponseModel<RentalDto>> {
+    return this.httpClient.get<ListResponseModel<RentalDto>>(this.path + '/getrentaldetails');
   }
 }
