@@ -5,21 +5,27 @@
   </div>
 
   <div class="col-md-9">
-    <div class="row">
+    <div
+      class="d-flex flex-wrap justify-content-center justify-content-xl-start"
+      style="gap: 0.75em; padding: 0"
+    >
       <div
         *ngFor="let car of carsDto"
-        class="card mb-3 me-3"
-        style="width: 18rem"
+        class="card"
+        style="
+          width: 18vw;
+          min-width: 16rem;
+          max-width: 18rem;
+          min-height: 18rem;
+          max-height: 23rem;
+        "
       >
-        <div
-          class="d-flex align-items-center justify-content-center"
-          style="height: 10em"
-        >
+        <div class="d-flex" style="height: 45%">
           <img
             [src]="imageUrl + car.imagePaths[0]"
-            class="img"
-            alt="..."
-            style="max-height: 100%; max-width: 100%"
+            class="card-img-top align-self-center"
+            [alt]="car.carName"
+            style="max-height: 100%; max-width: 100%; object-fit: contain"
           />
         </div>
         <div class="card-body">
@@ -27,7 +33,10 @@
           <p class="card-text">
             <b>Marka: </b>{{ car.brandName }} <br />
             <b>Renk: </b>{{ car.colorName }} <br />
-            <b>Fiyat: </b> {{ car.dailyPrice | currency: "TRY " }}/Gunluk
+            <b>Fiyat: </b>
+            {{
+              car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"
+            }}/Gunluk
           </p>
           <a routerLink="/carDetail/{{ car.carID }}" class="btn btn-primary"
             >Detayina bak</a

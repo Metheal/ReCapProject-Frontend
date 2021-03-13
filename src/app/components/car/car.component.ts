@@ -43,4 +43,13 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+
+  getCarsByCategory(categoryID: number): void {
+    this.carService.getCarDetails().subscribe((response) => {
+      this.carsDto = response.data;
+      this.message = response.message;
+      this.success = response.success;
+      this.dataLoaded = true;
+    });
+  }
 }

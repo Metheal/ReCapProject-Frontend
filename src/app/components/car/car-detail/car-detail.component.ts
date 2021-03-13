@@ -27,7 +27,7 @@ export class CarDetailComponent implements OnInit {
   }
 
 
-  getCarDtoByID(carID: string): void {
+  getCarDtoByID(carID: number): void {
     this.carService.getCarDtoByID(carID).subscribe((response?) => {
       this.carDto = response.data
     })

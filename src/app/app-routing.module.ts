@@ -7,6 +7,7 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { UserComponent } from './components/user/user.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'cars', component: CarComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'customers', component: CustomerComponent },
   { path: 'colors', component: ColorComponent },
   { path: 'brands', component: BrandComponent },
-  { path: '', redirectTo: '', pathMatch: 'full', component: CarComponent },
+  { path: '', redirectTo: '', pathMatch: 'full', component: HomeComponent },
 ];
 
 @NgModule({
