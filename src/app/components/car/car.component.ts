@@ -31,7 +31,7 @@ export class CarComponent implements OnInit {
       if (params['color']) {
         this.getCarDetailsByColorName(params['color']);
       }
-      if (params['brand']) {
+      else if (params['brand']) {
         this.getCarDetailsByBrandName(params['brand']);
       } else {
         this.getCarDetails();

@@ -13,7 +13,6 @@
     *ngFor="let color of colors"
     routerLink="/cars"
     [queryParams]="{ color: color.colorName | lowercase }"
-    queryParamsHandling="merge"
     class="list-group-item list-group-item-action"
     [routerLinkActive]="['active']"
     [routerLinkActiveOptions]="{ exact: true }"

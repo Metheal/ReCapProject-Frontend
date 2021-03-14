@@ -11,7 +11,6 @@
   <a
     *ngFor="let brand of brands"    routerLink="/cars"
     [queryParams]="{ brand: brand.brandName | lowercase }"
-    queryParamsHandling="merge"
     class="list-group-item list-group-item-action"
     [routerLinkActive]="['active']"
     [routerLinkActiveOptions]="{ exact: true }"
