@@ -17,10 +17,27 @@
         <li *ngFor="let component of components; index as i" class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="this.pages.get(this.components)[i]"
+            [routerLink]="this.routes[i]"
             [routerLinkActive]="['active']"
             >{{ component }}</a
           >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Yonetim
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let admin_component of admin_components; index as i">
+              <a class="dropdown-item" [routerLink]="this.admin_routes[i]">{{ admin_component }}</a>
+            </li>
+          </ul>
         </li>
       </ul>
       <form class="d-flex">

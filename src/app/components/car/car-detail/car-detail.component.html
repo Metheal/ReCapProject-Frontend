@@ -3,7 +3,7 @@
     <div class="carousel-inner d-flex " style="height: 50vh;min-height: 20rem;max-height: 30rem;">
       <div
         *ngFor="
-          let image of carDto?.imagePaths;
+          let image of carDto.imagePaths;
           index as i;
           first as firstImage
         "
@@ -38,23 +38,27 @@
       <tbody>
         <tr>
           <th scope="row">Marka</th>
-          <td>{{ carDto?.brandName }}</td>
+          <td>{{ carDto.brandName }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Marka</th>
+          <td>{{ carDto.carName }}</td>
         </tr>
         <tr>
           <th scope="row">Renk</th>
-          <td>{{ carDto?.colorName }}</td>
+          <td>{{ carDto.colorName }}</td>
         </tr>
         <tr>
           <th scope="row">Fiyat</th>
-          <td>{{ carDto?.dailyPrice | currency: "TRY " }}</td>
+          <td>{{ carDto.dailyPrice | currency: "TRY " }}</td>
         </tr>
         <tr>
           <th scope="row">Yil</th>
-          <td>{{ carDto?.modelYear }}</td>
+          <td>{{ carDto.modelYear }}</td>
         </tr>
         <tr>
           <th scope="row">Aciklama</th>
-          <td>{{ carDto?.description }}</td>
+          <td>{{ carDto.description }}</td>
         </tr>
       </tbody>
     </table>

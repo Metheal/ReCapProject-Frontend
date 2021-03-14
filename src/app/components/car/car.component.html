@@ -6,11 +6,17 @@
 
   <div class="col-md-9">
     <div
-      class="d-flex flex-wrap justify-content-center justify-content-xl-start"
-      style="gap: 0.75em; padding: 0"
+    class="d-flex flex-wrap justify-content-center justify-content-xl-start"
+    style="gap: 0.75em; padding: 0"
     >
+    <input
+      class="form-control"
+      id="carName"
+      placeholder="Arac ismi girerek arama yapabilirsiniz"
+      [(ngModel)]="filterText"
+    />
       <div
-        *ngFor="let car of carsDto"
+        *ngFor="let car of carsDto | carFilter: filterText"
         class="card"
         style="
           width: 18vw;

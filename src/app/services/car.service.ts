@@ -34,4 +34,12 @@ export class CarService {
     return this.httpClient.get<ItemResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
   }
   
+  getCarDetailsByColorName(colorName: string): Observable<ListResponseModel<CarDto>> {
+    return this.httpClient.get<ListResponseModel<CarDto>>(this.path + '/getcardetailsbycolorname?name=' + colorName); 
+  }
+
+  getCarDetailsByBrandName(brandName: string): Observable<ListResponseModel<CarDto>> {
+    return this.httpClient.get<ListResponseModel<CarDto>>(this.path + '/getcardetailsbybrandname?name=' + brandName); 
+  }
+  
 }

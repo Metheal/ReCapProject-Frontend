@@ -15,7 +15,7 @@ export class CarDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private carService: CarService) { }
 
-  carDto?: CarDto;
+  carDto: CarDto;
   imageUrl = environment.apiURL;
   dataLoaded = false;
 

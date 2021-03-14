@@ -7,31 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
   constructor() {}
-  components: string[] = [
-    'Araclar',
-    'Markalar',
-    'Renkler',
-    'Musteriler',
-    'Kiralamalar',
-  ];
-  routes: string[] = ['cars', 'brands', 'colors', 'customers', 'rentals'];
+  components: string[] = ['Araclar', 'Markalar', 'Renkler'];
+  routes: string[] = ['cars', 'brands', 'colors'];
   pages = new Map();
 
-  ngOnInit(): void {
-    this.makeMap(this.components, this.routes);
-    this.fun();
-  }
+  admin_components: string[] = ['Kullanicilar', 'Musteriler', 'Kiralamalar'];
+  admin_routes: string[] = ['users', 'customers', 'rentals'];
 
-  makeMap(components: string[], routes: string[]): void {
-    for (let i = 0; i < routes.length; i++) {
-      this.pages.set(components, routes);
-    }
-  }
-  fun() {
-    for (let i = 0; i < this.components.length; i++) {
-      console.log(i);
-    }
-    console.log(this.pages.get(this.components)[0])
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { ImageComponent } from './components/image/image.component';
 import { HomeComponent } from './home/home.component';
+import { CarFilterPipe } from './components/car/car-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,11 @@ import { HomeComponent } from './home/home.component';
     UserComponent,
     CarDetailComponent,
     ImageComponent,
-    HomeComponent
+    HomeComponent,
+    CarFilterPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
