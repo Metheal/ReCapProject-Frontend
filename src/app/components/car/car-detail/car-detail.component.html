@@ -1,17 +1,21 @@
 <div class="col-lg-7 mx-auto">
   <div id="carImageSlide" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner d-flex " style="height: 50vh;min-height: 20rem;max-height: 30rem;">
+    <div
+      class="carousel-inner d-flex"
+      style="height: 50vh; min-height: 20rem; max-height: 30rem"
+    >
       <div
-        *ngFor="
-          let image of carDto.imagePaths;
-          index as i;
-          first as firstImage
-        "
+        *ngFor="let image of carDto.imagePaths; index as i; first as firstImage"
         class="carousel-item align-self-center"
         [ngClass]="{ active: firstImage }"
         style="height: 100%; width: 100%"
       >
-        <img [src]="imageUrl + image" class="" style="height: 100%; width: 100%; object-fit: contain" [alt]="i" />
+        <img
+          [src]="imageUrl + image"
+          class=""
+          style="height: 100%; width: 100%; object-fit: contain"
+          [alt]="i"
+        />
       </div>
 
       <button
@@ -41,7 +45,7 @@
           <td>{{ carDto.brandName }}</td>
         </tr>
         <tr>
-          <th scope="row">Marka</th>
+          <th scope="row">Model</th>
           <td>{{ carDto.carName }}</td>
         </tr>
         <tr>
@@ -50,7 +54,11 @@
         </tr>
         <tr>
           <th scope="row">Fiyat</th>
-          <td>{{ carDto.dailyPrice | currency: "TRY " }}</td>
+          <td>
+            {{
+              carDto.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"
+            }}/Gunluk
+          </td>
         </tr>
         <tr>
           <th scope="row">Yil</th>

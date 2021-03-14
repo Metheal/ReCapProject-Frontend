@@ -14,7 +14,7 @@ import { UserComponent } from './components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { ImageComponent } from './components/image/image.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CarFilterPipe } from './components/car/car-filter.pipe';
 
 @NgModule({
