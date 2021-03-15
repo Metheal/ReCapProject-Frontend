@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Brand } from '../../models/brand';
 import { BrandService } from '../../services/brand.service';
 
@@ -11,12 +11,18 @@ import { BrandService } from '../../services/brand.service';
 export class BrandComponent implements OnInit {
   constructor(private brandService: BrandService) {}
   title = 'Tum Markalar';
+  propName = 'brandName';
   brands: Brand[];
   message: string;
   success: boolean;
   dataLoaded = false;
+  currentFilter: string;
+  @Input() params: string;
+  @Output() setParams = new EventEmitter<string>();
+
   ngOnInit(): void {
     this.getBrands();
+    console.log(this.params);
   }
 
   getBrands(): void {
@@ -26,5 +32,23 @@ export class BrandComponent implements OnInit {
       this.message = response.message;
       this.dataLoaded = true;
     });
+  }
+
+  addBrandNameToParams(brandName: string): void {
+    if (this.currentFilter) {
+      this.params.replace(this.currentFilter, brandName);
+      this.currentFilter = brandName;
+    } else {
+      this.params += "?" + this.propName + '=' + brandName;
+      this.currentFilter = brandName;
+    }
+    this.setParams.emit(this.propName + '=' + brandName)
+  }
+
+  resetParams(): void {
+    if (this.currentFilter){
+      this.params = '';
+      this.setParams.emit('');
+    }
   }
 }

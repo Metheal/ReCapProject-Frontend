@@ -1,19 +1,19 @@
 <div class="list-group">
   <a
-  routerLink="/cars"
-  [routerLinkActive]="['active']"
-  [routerLinkActiveOptions]="{ exact: true }"
-  class="list-group-item list-group-item-action"
-  aria-current="true"
+    routerLink="/cars"
+    [ngClass]="{ active: !params.includes('brandName') }"
+    class="list-group-item list-group-item-action"
+    aria-current="true"
+    (click)="resetParams()"
   >
     {{ title }}
   </a>
   <a
-    *ngFor="let brand of brands"    routerLink="/cars"
-    [queryParams]="{ brand: brand.brandName | lowercase }"
+    *ngFor="let brand of brands"
+    routerLink="#"
     class="list-group-item list-group-item-action"
-    [routerLinkActive]="['active']"
-    [routerLinkActiveOptions]="{ exact: true }"
+    [ngClass]="{ active: this.params.includes(brand.brandName) }"
+    (click)="addBrandNameToParams(brand.brandName)"
     >{{ brand.brandName }}</a
   >
 </div>

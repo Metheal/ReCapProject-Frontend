@@ -24,14 +24,13 @@ export class CarComponent implements OnInit {
   success: boolean;
   dataLoaded = false;
   imageUrl: string = environment.apiURL;
-  filterText = '';
+  params: string = '';
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['color']) {
         this.getCarDetailsByColorName(params['color']);
-      }
-      else if (params['brand']) {
+      } else if (params['brand']) {
         this.getCarDetailsByBrandName(params['brand']);
       } else {
         this.getCarDetails();
@@ -86,5 +85,27 @@ export class CarComponent implements OnInit {
         this.success = response.success;
         this.dataLoaded = true;
       });
+  }
+
+  getParams($event: string): void {
+    if ($event == '') {
+      this.params = '';
+    } else {
+      if (this.params.includes($event.split('=')[0])) {
+        let paramsArray = this.params.split('&');
+        paramsArray.forEach((param, i) => {
+          if (param.split('=')[0] === $event.split('=')[0]) {
+            console.log(paramsArray[i]);
+            paramsArray.splice(i);
+          }
+        });
+        this.params = paramsArray.join();
+      }
+      if (this.params == '') {
+        this.params += `${$event}`;
+      } else {
+        this.params += `&${$event}`;
+      }
+    }
   }
 }
