@@ -17,13 +17,20 @@ export class CarFilterPipe implements PipeTransform {
   // }
 
   transform(value: CarDto[], params: string): CarDto[] {
+    if (!params.includes('=')) {
+      params = params ? params.toLocaleLowerCase() : '';
+      return params
+        ? value.filter(
+            (c: CarDto) => c.carName.toLocaleLowerCase().indexOf(params) !== -1
+          )
+        : value;
+    }
     let paramsArray: string[] = params ? params.toLowerCase().split('&') : [''];
     return paramsArray
       ? value.filter((c: CarDto) => {
           for (let param of paramsArray) {
             for (let key in Object.keys(c)) {
               if (
-                paramsArray &&
                 Object.keys(c)[key].toLowerCase() == param.split('=')[0] &&
                 Object.values(c)
                   [key].toLocaleLowerCase()
