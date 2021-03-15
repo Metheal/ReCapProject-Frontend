@@ -1,19 +1,19 @@
 <div class="list-group">
   <a
-    routerLink="/cars"
     [ngClass]="{ active: this.allBrands || !params.includes('brandName=') }"
     class="list-group-item list-group-item-action"
     aria-current="true"
     (click)="resetParams()"
+    style="cursor: pointer"
   >
     {{ title }}
   </a>
   <a
     *ngFor="let brand of brands"
-    routerLink="#"
     class="list-group-item list-group-item-action"
     [ngClass]="{ active: this.params.includes(brand.brandName) }"
     (click)="addBrandNameToParams(brand.brandName)"
+    style="cursor: pointer"
     >{{ brand.brandName }}</a
   >
 </div>

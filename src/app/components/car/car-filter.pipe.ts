@@ -25,7 +25,7 @@ export class CarFilterPipe implements PipeTransform {
           )
         : value;
     }
-    let paramsArray: string[] = params ? params.toLowerCase().split('&') : [''];
+    let paramsArray: string[] = [...new Set(params.toLowerCase().split('&'))];
     return paramsArray
       ? value.filter((c: CarDto) => {
           for (let param of paramsArray) {
