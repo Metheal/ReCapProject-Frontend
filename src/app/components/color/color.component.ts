@@ -13,6 +13,7 @@ export class ColorComponent implements OnInit {
 
   title = 'Tum Renkler';
   propName = 'colorName';
+  allColors = true;
   colors?: Color[];
   success?: boolean;
   message?: string;
@@ -43,12 +44,14 @@ export class ColorComponent implements OnInit {
       this.currentFilter = colorName;
     }
     this.setParams.emit(this.propName + '=' + colorName);
+    this.allColors = false;
   }
 
   resetParams(): void {
     if (this.currentFilter) {
       this.params = '';
-      this.setParams.emit('');
+      this.setParams.emit(this.propName + '=');
     }
+    this.allColors = true;
   }
 }

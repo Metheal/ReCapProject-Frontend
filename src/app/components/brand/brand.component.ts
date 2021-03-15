@@ -12,6 +12,7 @@ export class BrandComponent implements OnInit {
   constructor(private brandService: BrandService) {}
   title = 'Tum Markalar';
   propName = 'brandName';
+  allBrands = true;
   brands: Brand[];
   message: string;
   success: boolean;
@@ -43,12 +44,14 @@ export class BrandComponent implements OnInit {
       this.currentFilter = brandName;
     }
     this.setParams.emit(this.propName + '=' + brandName)
+    this.allBrands = false;
   }
 
   resetParams(): void {
     if (this.currentFilter){
       this.params = '';
-      this.setParams.emit('');
+      this.setParams.emit(this.propName + '=' );
     }
+    this.allBrands = true;
   }
 }

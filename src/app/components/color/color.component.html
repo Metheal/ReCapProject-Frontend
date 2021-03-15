@@ -1,7 +1,7 @@
 <div class="list-group">
   <a
     routerLink="/cars"
-    [ngClass]="{ active: !params.includes('colorName') }"
+    [ngClass]="{ active: this.allColors || !params.includes('colorName') }"
     class="list-group-item list-group-item-action"
     aria-current="true"
     (click)="resetParams()"
