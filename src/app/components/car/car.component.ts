@@ -95,8 +95,7 @@ export class CarComponent implements OnInit {
         let paramsArray = this.params.split('&');
         paramsArray.forEach((param, i) => {
           if (param.split('=')[0] === $event.split('=')[0]) {
-            console.log(paramsArray[i]);
-            paramsArray.splice(i);
+            paramsArray.splice(i, 1);
           }
         });
         this.params = paramsArray.join();
