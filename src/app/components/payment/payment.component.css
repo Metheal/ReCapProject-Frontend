@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.paymentAddForm {
+  width: 100%;
+  margin: auto;
+}
+
+.checkbox {
+  font-weight: 400;
+}
+
+.form-floating:focus-within {
+  z-index: 2;
+}
+
+.invalid {
+  border: 1px solid red;
+}

@@ -1,0 +1,138 @@
+<!-- <form [formGroup]="rentalAddForm" (ngSubmit)="add()" class="form">
+      <h3 class="my-3">Kredi kartiyla odeme yapabilirsiniz</h3>
+      <div class="mb-3">
+        <input
+          type="text"
+          id="creditCardNumber"
+          class="form-control"
+          placeholder="Kart Numarasini Girin"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          id="cardholderName"
+          class="form-control"
+          placeholder="Kart Uzerindeki Ismi Girin"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          id="expirationDate"
+          class="form-control"
+          placeholder="Ay/Yil Girin"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          id="cvv"
+          class="form-control"
+          placeholder="Kartin Arkasindaki Kodu Girin"
+        />
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Odeme Yap</button>
+    </form> -->
+
+<form [formGroup]="rentalAddForm" class="form row">
+  <div class="col-md-6">
+    <label for="rentDate" class="form-label">Teslim alinacak tarih</label>
+    <div class="form-group mb-3">
+      <input
+        type="date"
+        id="rentDate"
+        formControlName="rentDate"
+        class="form-control"
+        min="{{ currentDate | date: 'yyyy-MM-dd' }}"
+        [attr.disabled]="carAvailable"
+      />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="returnDate" class="form-label">Teslim edilecek tarih</label>
+    <div class="form-group mb-3">
+      <input
+        type="date"
+        id="returnDate"
+        formControlName="returnDate"
+        class="form-control"
+        min="{{ nextDate | date: 'yyyy-MM-dd' }}"
+        [attr.disabled]="rentalAddForm.value.rentDate === '' || carAvailable"
+        (click)="changeDate()"
+      />
+    </div>
+  </div>
+</form>
+<div
+  *ngIf="
+    rentalAddForm.valid &&
+    rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate
+  "
+>
+  <p class="alert alert-danger">
+    Teslim edilecek tarih, teslim alinma tarihinden en az 1 gun sonra olmalidir!
+  </p>
+</div>
+
+<!-- Button trigger modal -->
+<div class="float-start">
+  <p *ngIf="carAvailable === false" class="alert alert-danger" role="alert">
+    Arac belirtilen tarihte uygun degil!
+  </p>
+  <p *ngIf="carAvailable" class="alert alert-success" role="alert">
+    Arac kiralamaya uygun!
+  </p>
+</div>
+<div class="float-end">
+  <button
+    *ngIf="carAvailable != null"
+    type="button"
+    class="btn btn-danger mx-2"
+    (click)="reset()"
+  >
+    Sifirla
+  </button>
+  <button
+    *ngIf="!carAvailable"
+    type="button"
+    class="btn btn-primary"
+    [disabled]="
+      rentalAddForm.invalid ||
+      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate
+    "
+    (click)="checkAvailability()"
+  >
+    Kontrol Et
+  </button>
+  <button
+    *ngIf="carAvailable"
+    type="button"
+    class="btn btn-primary"
+    [disabled]="
+      rentalAddForm.invalid ||
+      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate
+    "
+    data-bs-toggle="modal"
+    data-bs-target="#paymentModal"
+  >
+    Odeme yap ve kirala
+  </button>
+</div>
+
+<!-- Modal -->
+<div
+  *ngIf="true"
+  class="modal fade"
+  id="paymentModal"
+  tabindex="-1"
+  aria-labelledby="Payment"
+  aria-hidden="true"
+>
+  <app-payment
+    (onSuccess)="onSuccess()"
+    [totalAmount]="totalAmount"
+    [days]="days"
+    [carName]="car.carName"
+  ></app-payment>
+</div>

@@ -1,0 +1,146 @@
+<div *ngIf="true" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="Payment">Kredi Kartiyla Odeme Yapin</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <main class="paymentAddForm">
+      <form [formGroup]="paymentAddForm" class="form">
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              formControlName="creditCardNumber"
+              [value]="
+                paymentAddForm.get('creditCardNumber').value
+                  | creditCardNumberPipe
+              "
+              id="creditCardNumber"
+              class="form-control"
+              maxlength="16"
+              placeholder="Kart Numarasini Girin"
+              [ngClass]="{
+                invalid:
+                  paymentAddForm.get('creditCardNumber').touched &&
+                  paymentAddForm.get('creditCardNumber').invalid
+              }"
+            />
+            <label for="creditCardNumber">Kart Numarasini Girin</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              formControlName="cardHolderName"
+              id="cardHolderName"
+              class="form-control"
+              placeholder="Kart Uzerindeki Ismi Girin"
+              [ngClass]="{
+                invalid:
+                  paymentAddForm.get('cardHolderName').touched &&
+                  paymentAddForm.get('cardHolderName').invalid
+              }"
+            />
+            <label for="cardHolderName">Kart Uzerindeki Ismi Girin</label>
+          </div>
+          <div class="row">
+            <div class="form-floating mb-3" style="width: 50%">
+              <input
+                formControlName="expirationMonth"
+                [value]="
+                  paymentAddForm.get('expirationMonth').value | number: '2.0'
+                "
+                type="number"
+                min="0"
+                max="12"
+                id="expirationMonth"
+                class="form-control"
+                placeholder="Ay Girin"
+                [ngClass]="{
+                  invalid:
+                    paymentAddForm.get('expirationMonth').touched &&
+                    paymentAddForm.get('expirationMonth').invalid
+                }"
+              />
+              <label for="expirationMonth">Ay Girin</label>
+            </div>
+            <div class="form-floating mb-3" style="width: 50%">
+              <input
+                type="number"
+                formControlName="expirationYear"
+                [min]="currentYear"
+                [max]="currentYear + 15"
+                id="expirationYear"
+                class="form-control"
+                placeholder="Yil Girin"
+                [ngClass]="{
+                  invalid:
+                    paymentAddForm.get('expirationYear').touched &&
+                    paymentAddForm.get('expirationYear').invalid
+                }"
+              />
+              <label for="expirationYear">Yil Girin</label>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              formControlName="creditCardCVV"
+              id="creditCardCVV"
+              class="form-control"
+              maxlength="3"
+              placeholder="Kartin Arkasindaki Kodu Girin"
+              [ngClass]="{
+                invalid:
+                  paymentAddForm.get('creditCardCVV').touched &&
+                  paymentAddForm.get('creditCardCVV').invalid
+              }"
+            />
+            <label for="creditCardCVV">Kartin Arkasindaki Kodu Girin</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="saveCreditCard" [(ngModel)]="saveCreditCard"  [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label" for="saveCreditCard">
+              Kartimi sonraki alisverisler icin kaydet*
+            </label>
+          </div>
+          <div class="mt-1 mx-1">
+            <p>
+              Kiralanan arac: <strong>{{ carName }}</strong>
+            </p>
+            <p>
+              Kiralanacak Gun Sayisi: <strong>{{ days }}</strong>
+            </p>
+            <p>
+              Odenecek Tutar:
+              <strong>{{
+                totalAmount | currency: "TRY":"symbol-narrow":"1.2-2"
+              }}</strong>
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Iptal
+          </button>
+          <button
+            class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="paymentAddForm.invalid"
+            (click)="checkCreditCard()"
+          >
+            Odeme Yap
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Car } from '../models/car';
 import { CarDto } from '../models/carDto';
-import { ItemResponseModel } from '../models/itemResponseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable()
@@ -18,20 +18,20 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(this.path + '/getall');
   }
 
-  getCarByID(carID: string): Observable<ItemResponseModel<Car>>{
-    return this.httpClient.get<ItemResponseModel<Car>>(this.path + '/getbyid?id=' + carID);
+  getCarByID(carID: string): Observable<SingleResponseModel<Car>>{
+    return this.httpClient.get<SingleResponseModel<Car>>(this.path + '/getbyid?id=' + carID);
   }
 
   getCarDetails(): Observable<ListResponseModel<CarDto>> {
     return this.httpClient.get<ListResponseModel<CarDto>>(this.path + '/getcardetails');
   }
 
-  getCarDtoByID(carID: number): Observable<ItemResponseModel<CarDto>>{
-    return this.httpClient.get<ItemResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
+  getCarDtoByID(carID: number): Observable<SingleResponseModel<CarDto>>{
+    return this.httpClient.get<SingleResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
   }
   
-  getCarsByCategory(carID: string): Observable<ItemResponseModel<CarDto>>{
-    return this.httpClient.get<ItemResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
+  getCarsByCategory(carID: string): Observable<SingleResponseModel<CarDto>>{
+    return this.httpClient.get<SingleResponseModel<CarDto>>(this.path + '/getdtobyid?id=' + carID);
   }
   
   getCarDetailsByColorName(colorName: string): Observable<ListResponseModel<CarDto>> {

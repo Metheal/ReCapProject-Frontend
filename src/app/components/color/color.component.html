@@ -1,19 +1,18 @@
 <div class="list-group">
   <a
-    [ngClass]="{ active: this.allColors || !params.includes('colorName') }"
     class="list-group-item list-group-item-action"
     aria-current="true"
-    (click)="resetParams()"
-    style="cursor: pointer"
+    routerLink="/cars"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{'exact': true}"
   >
     {{ title }}
   </a>
   <a
     *ngFor="let color of colors"
     class="list-group-item list-group-item-action"
-    [ngClass]="{ active: this.params.includes(color.colorName) }"
-    (click)="addColorNameToParams(color.colorName)"
-    style="cursor: pointer"
+    routerLink="/cars/color/{{ color.colorName }}"
+    routerLinkActive="active"
     >{{ color.colorName }}
   </a>
 </div>

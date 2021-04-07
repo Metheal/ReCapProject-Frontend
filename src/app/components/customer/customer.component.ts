@@ -12,9 +12,9 @@ export class CustomerComponent implements OnInit {
   constructor(private customerService: CustomerService) {}
 
   title = 'Musteriler';
-  customers?: Customer[];
-  message?: string;
-  success?: boolean;
+  customers: Customer[];
+  message: string;
+  success: boolean;
   dataLoaded = false;
 
   ngOnInit(): void {

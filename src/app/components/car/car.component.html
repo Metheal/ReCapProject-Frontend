@@ -1,16 +1,10 @@
-<div class="row mt-4">
+<div *ngIf="dataLoaded" class="row mt-4">
   <div class="col-md-3">
     <div class="mb-4">
-      <app-color
-        params="{{ this.params }}"
-        (setParams)="getParams($event)"
-      ></app-color>
+      <app-color (colorNames)="getColorNames($event)"></app-color>
     </div>
     <div class="mb-4">
-      <app-brand
-        params="{{ this.params }}"
-        (setParams)="getParams($event)"
-      ></app-brand>
+      <app-brand (brandNames)="getBrandNames($event)"></app-brand>
     </div>
   </div>
 
@@ -19,14 +13,51 @@
       class="d-flex flex-wrap justify-content-center justify-content-xl-start"
       style="gap: 0.75em; padding: 0"
     >
-      <input
-        class="form-control"
-        id="carName"
-        placeholder="Arac ismi ya da Querystring ile arama yapabilirsiniz. Orn: brandName=Volkswagen&colorName=Siyah"
-        [(ngModel)]="params"
-      />
+      <form
+        [formGroup]="carFilterForm"
+        (ngSubmit)="applyFilter()"
+        class="d-flex w-100"
+        style="gap: 0.2rem"
+      >
+        <input
+          class="p-2 form-control"
+          placeholder="Arac ismi"
+          formControlName="carFilterText"
+          name="carFilterText"
+          id="carFilterText"
+        />
+        <select
+          formControlName="brandFilterText"
+          class="form-select p-2"
+          aria-label="Select a brand"
+          name="brandFilterText"
+          id="brandFilterText"
+        >
+          <option value="" selected>Marka Secin</option>
+          <option *ngFor="let brandName of brandNames" [value]="brandName">
+            {{ brandName }}
+          </option>
+        </select>
+
+        <select
+          formControlName="colorFilterText"
+          class="form-select p-2"
+          aria-label="Select a color"
+          name="colorFilterText"
+          id="colorFilterText"
+        >
+          <option value="" selected>Renk Secin</option>
+          <option *ngFor="let colorName of colorNames" [value]="colorName">
+            {{ colorName }}
+          </option>
+        </select>
+        <button class="btn btn-primary" type="submit">Filtrele</button>
+      </form>
       <div
-        *ngFor="let car of carsDto | carFilter: params"
+        *ngFor="
+          let car of carsDto
+            | carFilterPipe: carFilterText:colorFilterText:brandFilterText
+        "
         class="card"
         style="
           width: 18vw;

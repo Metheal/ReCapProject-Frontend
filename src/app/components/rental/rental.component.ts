@@ -13,10 +13,10 @@ export class RentalComponent implements OnInit {
   constructor(private rentalService: RentalService) {}
 
   title = 'Kiralamalar';
-  rentals?: Rental[];
-  rentalsDto?: RentalDto[];
-  message?: string;
-  succss?: boolean;
+  rentals: Rental[];
+  rentalsDto: RentalDto[];
+  message: string;
+  success: boolean;
   dataLoaded = false;
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class RentalComponent implements OnInit {
     this.rentalService.getRentals().subscribe((response) => {
       this.rentals = response.data;
       this.message = response.message;
-      this.succss = response.success;
+      this.success = response.success;
       this.dataLoaded = true;
     })
   }
@@ -36,7 +36,7 @@ export class RentalComponent implements OnInit {
     this.rentalService.getRentalDetails().subscribe((response) => {
       this.rentalsDto = response.data;
       this.message = response.message;
-      this.succss = response.success;
+      this.success = response.success;
       this.dataLoaded = true;
     })
   }

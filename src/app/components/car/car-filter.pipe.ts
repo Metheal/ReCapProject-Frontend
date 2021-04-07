@@ -7,7 +7,6 @@ import { CarDto } from 'src/app/models/carDto';
 export class CarFilterPipe implements PipeTransform {
   // transform(value: CarDto[], filterText: string): CarDto[] {
   //   filterText = filterText ? filterText.toLocaleLowerCase() : '';
-
   //   return filterText
   //     ? value.filter(
   //         (c: CarDto) =>

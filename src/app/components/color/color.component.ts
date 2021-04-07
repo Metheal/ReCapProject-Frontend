@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Color } from '../../models/color';
 import { ColorService } from '../../services/color.service';
 
@@ -12,15 +19,16 @@ export class ColorComponent implements OnInit {
   constructor(private colorService: ColorService) {}
 
   title = 'Tum Renkler';
-  propName = 'colorName';
-  allColors = true;
-  colors?: Color[];
-  success?: boolean;
-  message?: string;
+  // propName = 'colorName';
+  // allColors = true;
+  colors: Color[];
+  success: boolean;
+  message: string;
   dataLoaded = false;
-  currentFilter: string;
-  @Input() params: string;
-  @Output() setParams = new EventEmitter<string>();
+  // currentFilter: string;
+  // @Input() params: string;
+  // @Output() setParams = new EventEmitter<string>();
+  @Output() colorNames = new EventEmitter<string[]>();
 
   ngOnInit(): void {
     this.getColor();
@@ -32,26 +40,33 @@ export class ColorComponent implements OnInit {
       this.success = response.success;
       this.message = response.message;
       this.dataLoaded = true;
+      this.sentColorNames();
     });
   }
-  
-  addColorNameToParams(colorName: string): void {
-    if (this.currentFilter) {
-      this.params.replace(this.currentFilter, colorName);
-      this.currentFilter = colorName;
-    } else {
-      this.params += '?' + this.propName + '=' + colorName;
-      this.currentFilter = colorName;
-    }
-    this.setParams.emit(this.propName + '=' + colorName);
-    this.allColors = false;
-  }
 
-  resetParams(): void {
-    if (this.currentFilter) {
-      this.params = '';
-      this.setParams.emit(this.propName + '=');
-    }
-    this.allColors = true;
+  // addColorNameToParams(colorName: string): void {
+  //   if (this.currentFilter) {
+  //     this.params.replace(this.currentFilter, colorName);
+  //     this.currentFilter = colorName;
+  //   } else {
+  //     this.params += '?' + this.propName + '=' + colorName;
+  //     this.currentFilter = colorName;
+  //   }
+  //   this.setParams.emit(this.propName + '=' + colorName);
+  //   this.allColors = false;
+  // }
+
+  // resetParams(): void {
+  //   if (this.currentFilter) {
+  //     this.params = '';
+  //     this.setParams.emit(this.propName + '=');
+  //   }
+  //   this.allColors = true;
+  // }
+
+  sentColorNames(): void {
+    let colorNames: string[] = [];
+    this.colors.forEach((color) => colorNames.push(color.colorName));
+    this.colorNames.emit(colorNames);
   }
 }

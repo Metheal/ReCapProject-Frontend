@@ -8,16 +8,20 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { UserComponent } from './components/user/user.component';
 import { HomeComponent } from './components/home/home.component';
+import { RentalAddComponent } from './components/rental-add/rental-add.component';
 
 const routes: Routes = [
   { path: 'cars', component: CarComponent },
+  { path: 'cars/color/:colorName', component: CarComponent },
+  { path: 'cars/brand/:brandName', component: CarComponent },
   { path: 'carDetail/:carID', component: CarDetailComponent },
   { path: 'rentals', component: RentalComponent },
+  { path: 'rent/:carID', component: RentalAddComponent },
   { path: 'users', component: UserComponent },
   { path: 'customers', component: CustomerComponent },
   { path: 'colors', component: ColorComponent },
   { path: 'brands', component: BrandComponent },
-  { path: '', redirectTo: '', pathMatch: 'full', component: HomeComponent },
+  { path: '', redirectTo: '', pathMatch: 'full', component: CarComponent },
 ];
 
 @NgModule({
