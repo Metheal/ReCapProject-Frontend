@@ -19,6 +19,7 @@ export class PaymentComponent implements OnInit {
   @Input() days: number;
   @Input() carName: string;
   @Output('onSuccess') onSuccess: EventEmitter<any> = new EventEmitter();
+  @Output('onError') onError: EventEmitter<any> = new EventEmitter();
 
   currentDate = new Date();
   currentYear = this.currentDate.getFullYear();
@@ -67,10 +68,22 @@ export class PaymentComponent implements OnInit {
       creditCardModel.customerID = 3;
       this.creditCardService
         .add(creditCardModel, this.saveCreditCard)
-        .subscribe((response) => {
-          //this.toastrService.success('Kredi Karti Tanimlamasi Basarili');
-          this.onSuccess.emit();
-        });
+        .subscribe(
+          () => {
+            //this.toastrService.success('Kredi Karti Tanimlamasi Basarili');
+            this.onSuccess.emit();
+          },
+          (responseError) => {
+            if (responseError.error.Errors.length > 0) {
+              for (let i = 0; i < responseError.error.Errors.length; i++) {
+                this.toastrService.error(
+                  responseError.error.Errors[i].ErrorMessage,
+                  'Dogrulama hatasi'
+                );
+              }
+            }
+          }
+        );
     }
   }
 }

@@ -98,7 +98,6 @@ export class RentalAddComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            console.log(response);
             if (response === false) {
               this.carAvailable = true;
               this.checked++;
@@ -108,7 +107,6 @@ export class RentalAddComponent implements OnInit {
             }
           },
           (responseError) => {
-            console.log(responseError);
             if (responseError.error.Errors.length > 0) {
               for (let i = 0; i < responseError.error.Errors.length; i++) {
                 this.toastrService.error(
@@ -128,7 +126,7 @@ export class RentalAddComponent implements OnInit {
     this.add();
   }
 
-  onFailure(): void {
+  onError(): void {
     this.toastrService.error('Odeme basarisiz');
   }
 

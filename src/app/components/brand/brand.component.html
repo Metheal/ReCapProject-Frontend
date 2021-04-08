@@ -13,6 +13,11 @@
     class="list-group-item list-group-item-action"
     routerLink="/cars/brand/{{ brand.brandName }}"
     routerLinkActive="active"
-    >{{ brand.brandName }}</a
+    >{{ brand.brandName }}
+    <a
+      routerLink="/brandUpdate/{{ brand.brandID }}"
+      class="btn btn-outline-primary float-end"
+      >Guncelle</a
+    ></a
   >
 </div>

@@ -25,7 +25,7 @@
               maxlength="16"
               placeholder="Kart Numarasini Girin"
               [ngClass]="{
-                invalid:
+                'is-invalid':
                   paymentAddForm.get('creditCardNumber').touched &&
                   paymentAddForm.get('creditCardNumber').invalid
               }"
@@ -40,7 +40,7 @@
               class="form-control"
               placeholder="Kart Uzerindeki Ismi Girin"
               [ngClass]="{
-                invalid:
+                'is-invalid':
                   paymentAddForm.get('cardHolderName').touched &&
                   paymentAddForm.get('cardHolderName').invalid
               }"
@@ -61,7 +61,7 @@
                 class="form-control"
                 placeholder="Ay Girin"
                 [ngClass]="{
-                  invalid:
+                  'is-invalid':
                     paymentAddForm.get('expirationMonth').touched &&
                     paymentAddForm.get('expirationMonth').invalid
                 }"
@@ -78,7 +78,7 @@
                 class="form-control"
                 placeholder="Yil Girin"
                 [ngClass]="{
-                  invalid:
+                  'is-invalid':
                     paymentAddForm.get('expirationYear').touched &&
                     paymentAddForm.get('expirationYear').invalid
                 }"
@@ -95,7 +95,7 @@
               maxlength="3"
               placeholder="Kartin Arkasindaki Kodu Girin"
               [ngClass]="{
-                invalid:
+                'is-invalid':
                   paymentAddForm.get('creditCardCVV').touched &&
                   paymentAddForm.get('creditCardCVV').invalid
               }"

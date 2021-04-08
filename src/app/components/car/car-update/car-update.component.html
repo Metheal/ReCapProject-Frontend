@@ -1,0 +1,130 @@
+<div *ngIf="car" class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araci Guncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carUpdateForm" class="form">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              id="carName"
+              formControlName="carName"
+              class="form-control"
+              placeholder="Arac adi"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('carName').touched &&
+                  carUpdateForm.get('carName').invalid
+              }"
+            />
+            <label for="carName">Arac Adi</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select
+              class="form-select"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('brandID').touched &&
+                  carUpdateForm.get('brandID').invalid
+              }"
+              aria-label="Renk"
+              formControlName="brandID"
+            >
+              <option
+                class="form-control"
+                *ngFor="let brand of brands"
+                [ngValue]="brand.brandID"
+              >
+                {{ brand.brandName }}
+              </option>
+            </select>
+            <label for="brandID">Marka</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select
+              class="form-select"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('colorID').touched &&
+                  carUpdateForm.get('colorID').invalid
+              }"
+              aria-label="Renk"
+              formControlName="colorID"
+            >
+              <option
+                type="number"
+                class="form-control"
+                *ngFor="let color of colors"
+                [ngValue]="color.colorID"
+              >
+                {{ color.colorName }}
+              </option>
+            </select>
+            <label for="colorID">Renk</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              id="dailyPrice"
+              formControlName="dailyPrice"
+              class="form-control"
+              placeholder="Arac adi"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('dailyPrice').touched &&
+                  carUpdateForm.get('dailyPrice').invalid
+              }"
+            />
+            <label for="dailyPrice"
+              >Gunluk fiyat
+              {{
+                carUpdateForm.value.dailyPrice
+                  | currency: "TRY":"symbol-narrow":"1.2-2"
+              }}</label
+            >
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              id="modelYear"
+              formControlName="modelYear"
+              class="form-control"
+              placeholder="Arac adi"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('modelYear').touched &&
+                  carUpdateForm.get('modelYear').invalid
+              }"
+            />
+            <label for="modelYear">Model Yili</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+              placeholder="Aciklama"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('description').touched &&
+                  carUpdateForm.get('description').invalid
+              }"
+            />
+            <label for="description">Aciklama</label>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">Guncelle</button>
+      </div>
+    </div>
+  </div>
+</div>

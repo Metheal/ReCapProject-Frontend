@@ -4,7 +4,7 @@
     aria-current="true"
     routerLink="/cars"
     routerLinkActive="active"
-    [routerLinkActiveOptions]="{'exact': true}"
+    [routerLinkActiveOptions]="{ exact: true }"
   >
     {{ title }}
   </a>
@@ -14,5 +14,10 @@
     routerLink="/cars/color/{{ color.colorName }}"
     routerLinkActive="active"
     >{{ color.colorName }}
-  </a>
+    <a
+      routerLink="/colorUpdate/{{ color.colorID }}"
+      class="btn btn-outline-primary float-end"
+      >Guncelle</a
+    ></a
+  >
 </div>

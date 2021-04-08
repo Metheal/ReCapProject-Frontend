@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { ImageComponent } from './components/image/image.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarFilterFormComponent } from './components/car/car-filter-form/car-filter-form.component';
 import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
@@ -25,6 +24,15 @@ import { CarFilterPipePipe } from './pipes/car-filter-pipe.pipe';
 import { BrandFilterPipePipe } from './pipes/brand-filter-pipe.pipe';
 import { ColorFilterPipePipe } from './pipes/color-filter-pipe.pipe';
 import { CreditCardNumberPipePipe } from './pipes/credit-card-number-pipe.pipe';
+import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { CarService } from './services/car.service';
+import { BrandService } from './services/brand.service';
+import { ColorService } from './services/color.service';
+import { ColorAddComponent } from './components/color/color-add/color-add.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
+import { CarUpdateComponent } from './components/car/car-update/car-update.component';
+import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +49,15 @@ import { CreditCardNumberPipePipe } from './pipes/credit-card-number-pipe.pipe';
     CarFilterPipePipe,
     BrandFilterPipePipe,
     ColorFilterPipePipe,
-    CarFilterFormComponent,
     RentalAddComponent,
     PaymentComponent,
     CreditCardNumberPipePipe,
+    CarAddComponent,
+    ColorAddComponent,
+    BrandAddComponent,
+    BrandUpdateComponent,
+    CarUpdateComponent,
+    ColorUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +70,7 @@ import { CreditCardNumberPipePipe } from './pipes/credit-card-number-pipe.pipe';
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [],
+  providers: [CarService, BrandService, ColorService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

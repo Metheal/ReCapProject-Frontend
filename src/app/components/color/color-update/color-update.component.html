@@ -1,0 +1,32 @@
+<div *ngIf="color" class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Renk Guncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="colorUpdateForm" class="form">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              id="colorName"
+              formControlName="colorName"
+              class="form-control"
+              placeholder="Renk adi"
+              [ngClass]="{
+                'is-invalid':
+                  colorUpdateForm.get('colorName').touched &&
+                  colorUpdateForm.get('colorName').invalid
+              }"
+            />
+            <label for="colorName">Renk Adi</label>
+          </div>
+
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">Guncelle</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div *ngIf="brand" class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Marka Guncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="brandUpdateForm" class="form">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              id="brandName"
+              formControlName="brandName"
+              class="form-control"
+              placeholder="Marka adi"
+              [ngClass]="{
+                'is-invalid':
+                  brandUpdateForm.get('brandName').touched &&
+                  brandUpdateForm.get('brandName').invalid
+              }"
+            />
+            <label for="brandName">Marka Adi</label>
+          </div>
+
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">Guncelle</button>
+      </div>
+    </div>
+  </div>
+</div>

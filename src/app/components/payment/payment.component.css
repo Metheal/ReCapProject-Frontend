@@ -23,7 +23,3 @@ body {
 .form-floating:focus-within {
   z-index: 2;
 }
-
-.invalid {
-  border: 1px solid red;
-}
