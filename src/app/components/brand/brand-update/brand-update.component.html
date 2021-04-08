@@ -21,11 +21,54 @@
             />
             <label for="brandName">Marka Adi</label>
           </div>
-
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-fill btn-primary" (click)="update()">Guncelle</button>
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Guncelle
+        </button>
+
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-outline-danger float-end"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteBrand"
+        >
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="deleteBrand"
+  tabindex="-1"
+  aria-labelledby="deleteBrandLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteBrandLabel">Markayi Sil</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Markayi silmek istediginizden emin misiniz?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Iptal
+        </button>
+        <button type="button" class="btn btn-danger" (click)="delete()">
+          <fa-icon [icon]="faTrash"></fa-icon> Evet, sil
+        </button>
       </div>
     </div>
   </div>

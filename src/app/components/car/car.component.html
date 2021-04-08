@@ -86,11 +86,14 @@
             }}/Gunluk
           </p>
           <a routerLink="/carDetail/{{ car.carID }}" class="btn btn-primary"
-            >Detayina bak</a
+            >Incele</a
           >
-          <a routerLink="/carUpdate/{{ car.carID }}" class="btn btn-outline-primary float-end"
-            >Guncelle</a
+          <a
+            routerLink="/carUpdate/{{ car.carID }}"
+            class="btn btn-outline-primary float-end"
           >
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </a>
         </div>
       </div>
     </div>

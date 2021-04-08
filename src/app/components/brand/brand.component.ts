@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Brand } from '../../models/brand';
 import { BrandService } from '../../services/brand.service';
+import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-brand',
@@ -10,17 +11,15 @@ import { BrandService } from '../../services/brand.service';
 })
 export class BrandComponent implements OnInit {
   @Output() brandNames = new EventEmitter<string[]>();
-  constructor(private brandService: BrandService) {}
   title = 'Tum Markalar';
-  // propName = 'brandName';
-  // allBrands = true;
   brands: Brand[];
   message: string;
   success: boolean;
   dataLoaded = false;
-  // currentFilter: string;
-  // @Input() params: string;
-  // @Output() setParams = new EventEmitter<string>();
+  faEdit = faEdit;
+  faPlusSquare = faPlusSquare;
+
+  constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
     this.getBrands();

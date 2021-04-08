@@ -34,10 +34,15 @@ export class BrandAddComponent implements OnInit {
 
   add(): void {
     if (this.brandAddForm.valid) {
-      const colorModel: Brand = Object.assign({}, this.brandAddForm.value);
-      this.brandService.addBrand(colorModel).subscribe(
+      const brandModel: Brand = Object.assign({}, this.brandAddForm.value);
+      this.brandService.addBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Basarili');
+          this.toastrService.success(
+            `Marka Eklendi: ${brandModel.brandName}`,
+            'Basarili'
+          );
+
+          this.brandAddForm.reset();
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {

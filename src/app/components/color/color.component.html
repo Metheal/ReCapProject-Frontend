@@ -7,6 +7,9 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     {{ title }}
+    <a routerLink="/colorAdd" class="btn btn-primary float-end">
+      <fa-icon class="far" [icon]="faPlusSquare"></fa-icon>
+    </a>
   </a>
   <a
     *ngFor="let color of colors"
@@ -17,7 +20,8 @@
     <a
       routerLink="/colorUpdate/{{ color.colorID }}"
       class="btn btn-outline-primary float-end"
-      >Guncelle</a
-    ></a
-  >
+    >
+      <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+  </a>
 </div>

@@ -5,10 +5,11 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-brand-update',
@@ -17,13 +18,16 @@ import { BrandService } from 'src/app/services/brand.service';
 })
 export class BrandUpdateComponent implements OnInit {
   brand: Brand;
-
   brandUpdateForm: FormGroup;
+
+  faTrash = faTrashAlt;
+
   constructor(
     private brandService: BrandService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +48,10 @@ export class BrandUpdateComponent implements OnInit {
       const brandModel = Object.assign({}, this.brandUpdateForm.value);
       this.brandService.updateBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success('Marka Guncellendi', 'Basarili');
+          this.toastrService.success(
+            `Marka guncellendi: ${brandModel.brandName}`,
+            'Basarili'
+          );
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -58,6 +65,29 @@ export class BrandUpdateComponent implements OnInit {
         }
       );
     }
+  }
+
+  delete(): void {
+    this.brandService.deleteBrand(this.brand).subscribe(
+      () => {
+        this.toastrService.success(
+          `Marka silindi: ${this.brand.brandName}`,
+          'Basarili'
+        );
+        document.getElementById('deleteBrand').click();
+        this.router.navigate(['/cars']);
+      },
+      (responseError) => {
+        if (responseError.error.Errors.length > 0) {
+          for (let i = 0; i < responseError.error.Errors.length; i++) {
+            this.toastrService.error(
+              responseError.error.Errors[i].ErrorMessage,
+              'Doğrulama hatası'
+            );
+          }
+        }
+      }
+    );
   }
 
   getBrand(id: number) {

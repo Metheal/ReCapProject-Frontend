@@ -35,20 +35,15 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let admin_component of admin_components; index as i">
-              <a class="dropdown-item" [routerLink]="this.admin_routes[i]">{{ admin_component }}</a>
+              <a class="dropdown-item" [routerLink]="this.admin_routes[i]">{{
+                admin_component
+              }}</a>
             </li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      <span class="nav-item"><a href="#" class="nav-link text-light"><fa-icon [icon]="faSignInAlt"></fa-icon> Giris Yap</a></span>
+      <span class="nav-item"><a href="#" class="nav-link text-light"><fa-icon [icon]="faSignOutAlt"></fa-icon> Cikis Yap</a></span>
     </div>
   </div>
 </nav>

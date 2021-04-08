@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { CarComponent } from './components/car/car.component';
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { ImageComponent } from './components/image/image.component';
 import { HomeComponent } from './components/home/home.component';
-import { RentalAddComponent } from './components/rental-add/rental-add.component';
+import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
 import { CarFilterPipePipe } from './pipes/car-filter-pipe.pipe';
@@ -66,6 +67,7 @@ import { ColorUpdateComponent } from './components/color/color-update/color-upda
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),

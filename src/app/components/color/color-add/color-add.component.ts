@@ -37,7 +37,11 @@ export class ColorAddComponent implements OnInit {
       const colorModel: Color = Object.assign({}, this.colorAddForm.value);
       this.colorService.addColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Basarili');
+          this.toastrService.success(
+            `Renk Eklendi: ${colorModel.colorName}`,
+            'Basarili'
+          );
+          this.colorAddForm.reset();
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {

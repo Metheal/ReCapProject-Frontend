@@ -1,13 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Color } from '../../models/color';
 import { ColorService } from '../../services/color.service';
+import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-color',
@@ -19,15 +13,12 @@ export class ColorComponent implements OnInit {
   constructor(private colorService: ColorService) {}
 
   title = 'Tum Renkler';
-  // propName = 'colorName';
-  // allColors = true;
   colors: Color[];
   success: boolean;
   message: string;
   dataLoaded = false;
-  // currentFilter: string;
-  // @Input() params: string;
-  // @Output() setParams = new EventEmitter<string>();
+  faEdit = faEdit;
+  faPlusSquare = faPlusSquare;
   @Output() colorNames = new EventEmitter<string[]>();
 
   ngOnInit(): void {

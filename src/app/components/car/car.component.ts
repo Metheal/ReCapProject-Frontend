@@ -5,6 +5,7 @@ import { CarDto } from 'src/app/models/carDto';
 import { environment } from 'src/environments/environment';
 import { Car } from '../../models/car';
 import { CarService } from '../../services/car.service';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-car',
@@ -25,7 +26,7 @@ export class CarComponent implements OnInit {
   success: boolean;
   dataLoaded = false;
   imageUrl: string = environment.apiURL;
-  params: string = '';
+  faEdit = faEdit; faTrash = faTrash;
 
   constructor(
     private carService: CarService,

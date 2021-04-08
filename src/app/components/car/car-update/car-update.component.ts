@@ -13,7 +13,8 @@ import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
 import { BrandService } from 'src/app/services/brand.service';
 import { Car } from 'src/app/models/car';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-car-update',
@@ -28,13 +29,16 @@ export class CarUpdateComponent implements OnInit {
 
   carUpdateForm: FormGroup;
 
+  faTrash = faTrashAlt;
+
   constructor(
     private carService: CarService,
     private colorService: ColorService,
     private brandService: BrandService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -90,5 +94,28 @@ export class CarUpdateComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz eksik', 'Dikkat');
     }
+  }
+
+  delete(): void {
+    this.carService.deleteCar(this.car).subscribe(
+      (response) => {
+        this.toastrService.success(
+          `Arac silindi: ${this.car.carName}`,
+          'Basarili'
+        );
+        document.getElementById('deleteCar').click();
+        this.router.navigate(['/cars']);
+      },
+      (responseError) => {
+        if (responseError.error.Errors.length > 0) {
+          for (let i = 0; i < responseError.error.Errors.length; i++) {
+            this.toastrService.error(
+              responseError.error.Errors[i].ErrorMessage,
+              'Doğrulama hatası'
+            );
+          }
+        }
+      }
+    );
   }
 }

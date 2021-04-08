@@ -5,10 +5,11 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-color-update',
@@ -17,13 +18,15 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorUpdateComponent implements OnInit {
   color: Color;
-
   colorUpdateForm: FormGroup;
+  faTrash = faTrashAlt;
+
   constructor(
     private colorService: ColorService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +47,10 @@ export class ColorUpdateComponent implements OnInit {
       const colorModel = Object.assign({}, this.colorUpdateForm.value);
       this.colorService.updateColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success('Marka Guncellendi', 'Basarili');
+          this.toastrService.success(
+            `Renk guncellendi: ${colorModel.colorName}`,
+            'Basarili'
+          );
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -58,6 +64,29 @@ export class ColorUpdateComponent implements OnInit {
         }
       );
     }
+  }
+
+  delete(): void {
+    this.colorService.deleteColor(this.color).subscribe(
+      () => {
+        this.toastrService.success(
+          `Renk silindi: ${this.color.colorName}`,
+          'Basarili'
+        );
+        document.getElementById('deleteColor').click();
+        this.router.navigate(['/cars']);
+      },
+      (responseError) => {
+        if (responseError.error.Errors.length > 0) {
+          for (let i = 0; i < responseError.error.Errors.length; i++) {
+            this.toastrService.error(
+              responseError.error.Errors[i].ErrorMessage,
+              'Dogrulama hatasi'
+            );
+          }
+        }
+      }
+    );
   }
 
   getColor(id: number) {
