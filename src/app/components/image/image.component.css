@@ -4,12 +4,13 @@
   color: rgb(255, 255, 255);
 }
 
-#image-close {
+#image-delete {
   position: absolute;
   top: 2px;
   right: 10px;
+  z-index: 999;
 }
 
-#image-close :hover {
+#image-delete :hover {
   color: rgb(255, 75, 75);
 }

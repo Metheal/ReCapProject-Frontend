@@ -5,19 +5,34 @@
   <div class="card-body">
     <div class="d-flex flex-wrap gap-3">
       <div id="image-wrapper" *ngFor="let carImage of carImages">
-        <img
-          [src]="baseUrl + carImage.imagePath"
-          alt=""
-          height="108"
-          width="192"
-        />
-        <span
-          id="image-close"
-          data-bs-toggle="modal"
-          data-bs-target="#deleteImage"
-          (click)="setImageToDelete(carImage)"
-          ><fa-icon [icon]="faTimes"></fa-icon
-        ></span>
+        <form [formGroup]="carImageUpdateForm">
+          <input
+            style="display: none"
+            type="file"
+            id="carImageUpdate"
+            name="carImageUpdate"
+            accept="image/x-png, image/jpeg"
+            class="form-control"
+            formControlName="image"
+            (change)="updateImage($event)"
+            #imageToUpdate
+          />
+          <img
+            [src]="baseUrl + carImage.imagePath"
+            alt=""
+            height="108"
+            width="192"
+            (click)="setImageToUpdate(carImage)"
+            (click)="imageToUpdate.click()"
+          />
+          <span
+            id="image-delete"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteImage"
+            (click)="setImageToDelete(carImage)"
+            ><fa-icon [icon]="faTimes"></fa-icon>
+          </span>
+        </form>
       </div>
     </div>
   </div>
@@ -27,8 +42,8 @@
         <div class="mb-3">
           <input
             type="file"
-            id="carImageUpload"
-            name="carImageUpload"
+            id="carImageAdd"
+            name="carImageAdd"
             accept="image/x-png, image/jpeg"
             class="form-control"
             formControlName="image"
@@ -37,7 +52,7 @@
         </div>
       </form>
       <div class="col-md-2">
-        <button type="submit" class="btn btn-primary" (click)="uploadImage()">
+        <button type="submit" class="btn btn-primary" (click)="addImage()">
           Yukle
         </button>
       </div>

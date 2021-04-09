@@ -30,11 +30,8 @@ export class ImageService {
     return this.httpClient.post<ResponseModel>(this.path + 'add', formData);
   }
 
-  updateImage(imageModel: CarImage): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.path + 'update',
-      imageModel
-    );
+  updateImage(formData: FormData): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.path + 'update', formData);
   }
 
   deleteImage(imageModel: CarImage): Observable<ResponseModel> {

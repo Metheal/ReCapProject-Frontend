@@ -24,7 +24,9 @@ export class ImageComponent implements OnInit {
   baseUrl = environment.apiURL;
   imageDataToUpload: any;
   imageToDelete: CarImage;
+  imageToUpdate: CarImage;
   carImageAddForm: FormGroup;
+  carImageUpdateForm: FormGroup;
   faTimes = faTimes;
   faTrash = faTrash;
 
@@ -38,10 +40,17 @@ export class ImageComponent implements OnInit {
   ngOnInit() {
     this.getImagesByCarID();
     this.createImageAddForm();
+    this.createImageUpdateForm();
   }
 
   createImageAddForm(): void {
     this.carImageAddForm = this.formBuilder.group({
+      image: ['', Validators.required],
+    });
+  }
+
+  createImageUpdateForm(): void {
+    this.carImageUpdateForm = this.formBuilder.group({
       image: ['', Validators.required],
     });
   }
@@ -66,14 +75,44 @@ export class ImageComponent implements OnInit {
     }
   }
 
-  uploadImage(): void {
+  addImage(): void {
     if (this.carImageAddForm.valid) {
       const formData: FormData = new FormData();
       formData.append('image', this.imageDataToUpload);
       formData.append('carID', this.car.carID.toString());
       this.imageService.addImage(formData).subscribe(
-        (response) => {
+        () => {
           this.toastrService.success('Gorsel eklendi', 'Basarili');
+          this.reload();
+        },
+        (responseError) => {
+          if (responseError.error.Errors.length > 0) {
+            for (let i = 0; i < responseError.error.Errors.length; i++) {
+              this.toastrService.error(
+                responseError.error.Errors[i].ErrorMessage,
+                'Doğrulama hatası'
+              );
+            }
+          }
+        }
+      );
+    } else {
+      this.toastrService.error('Formunuz eksik', 'Dikkat');
+    }
+  }
+
+  updateImage(event: any): void {
+    this.onFileSelected(event);
+    if (this.carImageUpdateForm.valid && this.imageDataToUpload != null) {
+      const formData: FormData = new FormData();
+      formData.append('image', this.imageDataToUpload);
+      Object.keys(this.imageToUpdate).forEach((value, index) => {
+        formData.append(value, Object.values(this.imageToUpdate)[index]);
+      });
+
+      this.imageService.updateImage(formData).subscribe(
+        () => {
+          this.toastrService.success('Gorsel guncellendi', 'Basarili');
           this.reload();
         },
         (responseError) => {
@@ -103,6 +142,10 @@ export class ImageComponent implements OnInit {
 
   setImageToDelete(image: CarImage): void {
     this.imageToDelete = image;
+  }
+
+  setImageToUpdate(image: CarImage): void {
+    this.imageToUpdate = image;
   }
 
   reload() {
