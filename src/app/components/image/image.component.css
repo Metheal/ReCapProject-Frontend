@@ -1,0 +1,15 @@
+#image-wrapper {
+  position: relative;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+#image-close {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+
+#image-close :hover {
+  color: rgb(255, 75, 75);
+}

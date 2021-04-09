@@ -7,7 +7,9 @@ import { ResponseModel } from '../models/responseModel';
 import { environment } from 'src/environments/environment';
 import { SingleResponseModel } from '../models/singleResponseModel';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class BrandService {
   constructor(private httpClient: HttpClient) {}
   path: string = environment.apiURL + '/api/brands/';

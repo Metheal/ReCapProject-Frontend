@@ -7,7 +7,9 @@ import { Color } from '../models/color';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ColorService {
   constructor(private httpClient: HttpClient) {}
   path: string = environment.apiURL + '/api/colors/';

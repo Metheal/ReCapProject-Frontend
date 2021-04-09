@@ -1,5 +1,5 @@
-<div *ngIf="car" class="container">
-  <div class="col-md-12">
+<div *ngIf="car" class="container row">
+  <div class="col-md-5">
     <div class="card">
       <div class="card-header">
         <h5 class="title">Araci Guncelle</h5>
@@ -138,6 +138,9 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="col-md-7">
+    <app-image [car]="car"></app-image>
   </div>
 </div>
 

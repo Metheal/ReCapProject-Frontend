@@ -8,7 +8,9 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CarService {
 
   constructor(private httpClient: HttpClient) { }
