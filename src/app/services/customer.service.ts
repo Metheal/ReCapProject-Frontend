@@ -39,4 +39,11 @@ export class CustomerService {
       customerModel
     );
   }
+
+  delete(customerModel: Customer): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      this.path + 'delete',
+      customerModel
+    );
+  }
 }

@@ -7,7 +7,6 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { JwtService } from 'src/app/services/jwt.service';
 import { environment } from 'src/environments/environment';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { FaConfig } from '@fortawesome/angular-fontawesome';
 import { UserClaims } from 'src/app/models/userClaims';
 
 @Component({

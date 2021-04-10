@@ -1,0 +1,75 @@
+<table *ngIf="users" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kullanici ID</th>
+      <th scope="col">Adi</th>
+      <th scope="col">Soyadi</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Islem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ user.userID }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.eMail }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          routerLink="/userDetail/{{ user.userID }}"
+        >
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteUserModal"
+          (click)="setUserToDelete(user)"
+        >
+          <fa-icon [icon]="faUserMinus"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="deleteUserModal"
+  tabindex="-1"
+  aria-labelledby="deleteUserLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteUserLabel">Kullaniciyi Sil</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Kullaniciyi silmek istediginizden emin misiniz?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Iptal
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteUser()">
+          <fa-icon [icon]="faUserMinus"></fa-icon> Evet, sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ userToDelete | json }}

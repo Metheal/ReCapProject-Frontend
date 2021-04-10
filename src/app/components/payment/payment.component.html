@@ -12,6 +12,22 @@
     <main class="paymentAddForm">
       <form [formGroup]="paymentAddForm" class="form">
         <div class="modal-body">
+          <div class="mb-3" *ngIf="creditCards.length > 0">
+            <select
+              class="form-select"
+              [ngModel]="currentCreditCard"
+              (ngModelChange)="setCurrentCreditCard($event)"
+              [ngModelOptions]="{ standalone: true }"
+              aria-label="Select Credit Card"
+            >
+              <option
+                *ngFor="let creditCard of creditCards"
+                [ngValue]="creditCard"
+              >
+                {{ creditCard.creditCardNumber }}
+              </option>
+            </select>
+          </div>
           <div class="form-floating mb-3">
             <input
               type="text"
@@ -104,7 +120,14 @@
             <label for="creditCardCVV">Kartin Arkasindaki Kodu Girin</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="saveCreditCard" [(ngModel)]="saveCreditCard"  [ngModelOptions]="{standalone: true}">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="saveCreditCard"
+              [(ngModel)]="saveCreditCard"
+              [ngModelOptions]="{ standalone: true }"
+            />
             <label class="form-check-label" for="saveCreditCard">
               Kartimi sonraki alisverisler icin kaydet*
             </label>

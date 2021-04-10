@@ -17,7 +17,6 @@ import { NaviComponent } from './components/navi/navi.component';
 import { UserComponent } from './components/user/user.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { ImageComponent } from './components/image/image.component';
-import { HomeComponent } from './components/home/home.component';
 import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
@@ -56,7 +55,6 @@ export function tokenGetter() {
     UserComponent,
     CarDetailComponent,
     ImageComponent,
-    HomeComponent,
     RentalAddComponent,
     PaymentComponent,
     CarAddComponent,

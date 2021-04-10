@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Brand } from '../../models/brand';
 import { BrandService } from '../../services/brand.service';
 import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserClaims } from 'src/app/models/userClaims';
 
 @Component({
   selector: 'app-brand',
@@ -10,6 +12,7 @@ import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
   providers: [BrandService],
 })
 export class BrandComponent implements OnInit {
+  @Input() user: UserClaims;
   @Output() brandNames = new EventEmitter<string[]>();
   title = 'Tum Markalar';
   brands: Brand[];
@@ -19,7 +22,7 @@ export class BrandComponent implements OnInit {
   faEdit = faEdit;
   faPlusSquare = faPlusSquare;
 
-  constructor(private brandService: BrandService) {}
+  constructor(private brandService: BrandService, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.getBrands();
@@ -39,5 +42,10 @@ export class BrandComponent implements OnInit {
     let brandNames: string[] = [];
     this.brands.forEach((element) => brandNames.push(element.brandName));
     this.brandNames.emit(brandNames);
+  }
+
+  isLoggedIn(): boolean {
+    var result = this.auth.isAuthenticated();
+    return result;
   }
 }

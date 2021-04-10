@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Color } from '../../models/color';
 import { ColorService } from '../../services/color.service';
 import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { UserClaims } from 'src/app/models/userClaims';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-color',
@@ -10,8 +12,9 @@ import { faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
   providers: [ColorService],
 })
 export class ColorComponent implements OnInit {
-  constructor(private colorService: ColorService) {}
+  constructor(private colorService: ColorService, private auth: AuthService) {}
 
+  @Input() user: UserClaims;
   title = 'Tum Renkler';
   colors: Color[];
   success: boolean;
@@ -39,5 +42,10 @@ export class ColorComponent implements OnInit {
     let colorNames: string[] = [];
     this.colors.forEach((color) => colorNames.push(color.colorName));
     this.colorNames.emit(colorNames);
+  }
+
+  isLoggedIn(): boolean {
+    var result = this.auth.isAuthenticated();
+    return result;
   }
 }

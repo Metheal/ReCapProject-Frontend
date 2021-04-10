@@ -1,10 +1,10 @@
 <div *ngIf="dataLoaded" class="row mt-4">
   <div class="col-md-3">
     <div class="mb-4">
-      <app-color (colorNames)="getColorNames($event)"></app-color>
+      <app-color [user]="user" (colorNames)="getColorNames($event)"></app-color>
     </div>
     <div class="mb-4">
-      <app-brand (brandNames)="getBrandNames($event)"></app-brand>
+      <app-brand [user]="user" (brandNames)="getBrandNames($event)"></app-brand>
     </div>
   </div>
 
@@ -88,6 +88,13 @@
           <a routerLink="/carDetail/{{ car.carID }}" class="btn btn-primary"
             >Incele</a
           >
+          <a
+            *ngIf="isLoggedIn() && user.role === 'admin'"
+            routerLink="/carUpdate/{{ car.carID }}"
+            class="btn btn-outline-primary float-end"
+          >
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </a>
         </div>
       </div>
     </div>

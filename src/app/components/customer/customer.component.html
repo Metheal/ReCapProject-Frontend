@@ -1,10 +1,73 @@
-<div *ngIf="!dataLoaded">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Musteriler Yukleniyor...</span>
-  </div>
-</div>
+<table *ngIf="customers" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Musteri ID</th>
+      <th scope="col">Kullanici ID</th>
+      <th scope="col">Sirket Adi</th>
+      <th scope="col">Findeks Puani</th>
+      <th scope="col">Islem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ customer.customerID }}</td>
+      <td>{{ customer.userID }}</td>
+      <td>{{ customer.companyName }}</td>
+      <td>{{ customer.findexScore }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          routerLink="/userDetail/{{ customer.userID }}"
+        >
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteCustomerModal"
+          (click)="setCustomerToDelete(customer)"
+        >
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<div *ngIf="dataLoaded">
-  <h2>{{ title }}</h2>
-  <div *ngFor="let customer of customers">{{ customer.userID }}</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="deleteCustomerModal"
+  tabindex="-1"
+  aria-labelledby="deleteCustomerLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCustomerLabel">Kullaniciyi Sil</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Kullaniciyi silmek istediginizden emin misiniz?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Iptal
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteCustomer()">
+          <fa-icon [icon]="faTrash"></fa-icon> Evet, sil
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

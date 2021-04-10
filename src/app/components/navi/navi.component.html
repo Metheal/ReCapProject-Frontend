@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Arac Kiralama</a>
+    <a class="navbar-brand" routerLink="/cars">Arac Kiralama</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -14,15 +14,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li *ngFor="let component of components; index as i" class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="this.routes[i]"
-            [routerLinkActive]="['active']"
-            >{{ component }}</a
-          >
-        </li>
-        <li class="nav-item dropdown">
+        <li
+          *ngIf="isLoggedIn() && user.role === 'admin'"
+          class="nav-item dropdown"
+        >
           <a
             class="nav-link dropdown-toggle"
             id="navbarDropdown"
@@ -68,7 +63,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="userDropdown">
             <li style="cursor: pointer">
-              <a class="dropdown-item" routerLink="/userDetail/{{ user.nameidentifier }}">
+              <a
+                class="dropdown-item"
+                routerLink="/userDetail/{{ user.nameidentifier }}"
+              >
                 <fa-icon [icon]="faUserAlt"></fa-icon>
                 Profil
               </a>

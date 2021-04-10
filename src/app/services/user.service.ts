@@ -27,4 +27,7 @@ export class UserService {
     return this.httpClient.post<ResponseModel>(this.path + 'update', userModel);
   }
   
+  deleteUser(userModel: User): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.path + 'delete', userModel);
+  }
 }

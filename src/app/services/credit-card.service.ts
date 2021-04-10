@@ -18,11 +18,14 @@ export class CreditCardService {
     id: number
   ): Observable<ListResponseModel<CreditCard>> {
     return this.httpClient.get<ListResponseModel<CreditCard>>(
-      this.path + '/getcreditcardsbycustomerid?id=' + id
+      this.path + '/getallbycustomerid?id=' + id
     );
   }
 
   add(creditCardModel: CreditCard, save: boolean): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.path + '/add?save=' + save, creditCardModel);
+    return this.httpClient.post<ResponseModel>(
+      this.path + '/add?save=' + save,
+      creditCardModel
+    );
   }
 }

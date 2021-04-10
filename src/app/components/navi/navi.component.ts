@@ -18,12 +18,9 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./navi.component.css'],
 })
 export class NaviComponent implements OnInit {
-  components: string[] = ['Araclar', 'Markalar', 'Renkler'];
-  routes: string[] = ['cars', 'brands', 'colors'];
-  pages = new Map();
 
-  admin_components: string[] = ['Kullanicilar', 'Musteriler', 'Kiralamalar'];
-  admin_routes: string[] = ['users', 'customers', 'rentals'];
+  admin_components: string[] = ['Kullanicilar', 'Musteriler', 'Kiralamalar', 'Yeni Arac Ekle'];
+  admin_routes: string[] = ['users', 'customers', 'rentals', 'carAdd'];
 
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;

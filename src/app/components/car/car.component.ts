@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CarDto } from 'src/app/models/carDto';
+import { UserClaims } from 'src/app/models/userClaims';
+import { JwtService } from 'src/app/services/jwt.service';
 import { environment } from 'src/environments/environment';
-import { Car } from '../../models/car';
 import { CarService } from '../../services/car.service';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-car',
@@ -26,9 +29,14 @@ export class CarComponent implements OnInit {
   dataLoaded = false;
   imageUrl: string = environment.apiURL;
 
+  user: UserClaims;
+  faEdit = faEdit;
+
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
+    private jwt: JwtService,
+    private auth: AuthService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -43,6 +51,7 @@ export class CarComponent implements OnInit {
       }
     });
     this.createCarFilterForm();
+    this.user = this.jwt.getLoggedUser();
   }
 
   getCarDetails(): void {
@@ -105,5 +114,13 @@ export class CarComponent implements OnInit {
     this.carFilterText = this.carFilterForm.value.carFilterText;
     this.colorFilterText = this.carFilterForm.value.colorFilterText;
     this.brandFilterText = this.carFilterForm.value.brandFilterText;
+  }
+
+  isLoggedIn(): boolean {
+    var result = this.auth.isAuthenticated();
+    if (result) {
+      this.user = this.jwt.getLoggedUser();
+    }
+    return result;
   }
 }

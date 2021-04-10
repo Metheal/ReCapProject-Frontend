@@ -38,8 +38,8 @@
   </div>
   <div class="card-footer">
     <div class="row">
-      <form [formGroup]="carImageAddForm" class="form col-md-10">
-        <div class="mb-3">
+      <form [formGroup]="carImageAddForm" class="form">
+        <div class="input-group my-2">
           <input
             type="file"
             id="carImageAdd"
@@ -49,13 +49,11 @@
             formControlName="image"
             (change)="onFileSelected($event)"
           />
+          <label class="input-group-text" for="carImageAdd" (click)="addImage()"
+            >Upload</label
+          >
         </div>
       </form>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary" (click)="addImage()">
-          Yukle
-        </button>
-      </div>
     </div>
   </div>
 </div>
