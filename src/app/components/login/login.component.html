@@ -1,0 +1,47 @@
+<main class="form-signin">
+  <form [formGroup]="loginForm">
+    <h1 class="h3 mb-3 fw-normal">Giris Yapin</h1>
+
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            loginForm.get('email').touched && loginForm.get('email').invalid
+        }"
+        id="floatingInput"
+        placeholder="E-posta"
+        formControlName="email"
+      />
+      <label for="floatingInput">E-posta</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            loginForm.get('password').touched &&
+            loginForm.get('password').invalid
+        }"
+        id="floatingPassword"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <label for="floatingPassword">Parola</label>
+    </div>
+
+    <button
+      class="w-100 btn btn-lg btn-primary"
+      type="submit"
+      [disabled]="loginForm.invalid"
+      (click)="login()"
+    >
+      Giris Yap
+    </button>
+    <p class="mt-5 mb-3 text-muted text-center">
+      &copy; 2021 Car Rental Project
+    </p>
+  </form>
+</main>

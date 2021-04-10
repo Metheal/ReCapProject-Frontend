@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit {
       ],
       creditCardCVV: [
         '',
-        [Validators.required, Validators.pattern(/^[0-9]{3}$/)],
+        [Validators.required, Validators.min(111), Validators.max(999)],
       ],
     });
   }

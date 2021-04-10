@@ -31,31 +31,11 @@ export class BrandComponent implements OnInit {
       this.success = response.success;
       this.message = response.message;
       this.dataLoaded = true;
-      this.sentBrandNames();
+      this.sendBrandNames();
     });
   }
 
-  // addBrandNameToParams(brandName: string): void {
-  //   if (this.currentFilter) {
-  //     this.params.replace(this.currentFilter, brandName);
-  //     this.currentFilter = brandName;
-  //   } else {
-  //     this.params += "?" + this.propName + '=' + brandName;
-  //     this.currentFilter = brandName;
-  //   }
-  //   this.setParams.emit(this.propName + '=' + brandName)
-  //   this.allBrands = false;
-  // }
-
-  // resetParams(): void {
-  //   if (this.currentFilter){
-  //     this.params = '';
-  //     this.setParams.emit(this.propName + '=' );
-  //   }
-  //   this.allBrands = true;
-  // }
-
-  sentBrandNames(): void {
+  sendBrandNames(): void {
     let brandNames: string[] = [];
     this.brands.forEach((element) => brandNames.push(element.brandName));
     this.brandNames.emit(brandNames);

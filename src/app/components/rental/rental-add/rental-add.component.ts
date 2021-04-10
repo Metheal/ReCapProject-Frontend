@@ -24,7 +24,7 @@ export class RentalAddComponent implements OnInit {
   rental: Rental;
   rentalAddForm: FormGroup;
   @Input() car: CarDto;
-  customerID: number = 3;
+  @Input() customer: Customer;
   currentDate = new Date();
   nextDate: Date;
   totalAmount: number;
@@ -49,7 +49,7 @@ export class RentalAddComponent implements OnInit {
   createRentalForm(): void {
     this.rentalAddForm = this.formBuilder.group({
       carID: [this.car.carID, Validators.required],
-      customerID: [this.customerID, Validators.required],
+      customerID: [this.customer.customerID, Validators.required],
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
     });
@@ -84,7 +84,7 @@ export class RentalAddComponent implements OnInit {
     if (this.checked === 2) {
       return;
     }
-    if (this.rentalAddForm.valid) {
+    if (this.rentalAddForm.valid && this.checkFindexScore) {
       const rentDate = +new Date(this.rentalAddForm.value.rentDate);
       const returnDate = +new Date(this.rentalAddForm.value.returnDate);
       this.days = (returnDate - rentDate) / 1000 / 3600 / 24;
@@ -160,5 +160,14 @@ export class RentalAddComponent implements OnInit {
         }
       }
     );
+  }
+
+  checkFindexScore() {
+    if (this.car && this.customer) {
+      const result =
+        this.customer.findexScore >= this.car.findexScore ? true : false;
+      return result;
+    }
+    return false;
   }
 }

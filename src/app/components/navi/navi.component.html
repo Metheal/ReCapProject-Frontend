@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" routerLink="/">Arac Kiralama</a>
     <button
       class="navbar-toggler"
@@ -25,7 +25,6 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
             id="navbarDropdown"
             role="button"
             data-bs-toggle="dropdown"
@@ -35,15 +34,54 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let admin_component of admin_components; index as i">
-              <a class="dropdown-item" [routerLink]="this.admin_routes[i]">{{
-                admin_component
-              }}</a>
+              <a class="dropdown-item" [routerLink]="this.admin_routes[i]">
+                {{ admin_component }}
+              </a>
             </li>
           </ul>
         </li>
       </ul>
-      <span class="nav-item"><a href="#" class="nav-link text-light"><fa-icon [icon]="faSignInAlt"></fa-icon> Giris Yap</a></span>
-      <span class="nav-item"><a href="#" class="nav-link text-light"><fa-icon [icon]="faSignOutAlt"></fa-icon> Cikis Yap</a></span>
+      <ul *ngIf="!isLoggedIn()" class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <button routerLink="login" class="btn btn btn-primary text-light">
+            <fa-icon [icon]="faSignInAlt"></fa-icon> Giris Yap
+          </button>
+        </li>
+        <li class="nav-item">
+          <button routerLink="register" class="btn btn btn-outline-light">
+            <fa-icon [icon]="faUserPlus"></fa-icon> Kaydol
+          </button>
+        </li>
+      </ul>
+      <span *ngIf="isLoggedIn()" class="nav navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <fa-icon [icon]="faUserAlt"></fa-icon>
+            {{ user.name }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li style="cursor: pointer">
+              <a class="dropdown-item" routerLink="/userDetail/{{ user.nameidentifier }}">
+                <fa-icon [icon]="faUserAlt"></fa-icon>
+                Profil
+              </a>
+            </li>
+            <li style="cursor: pointer">
+              <a class="dropdown-item" (click)="logout()">
+                <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                Cikis Yap
+              </a>
+            </li>
+          </ul>
+        </li>
+      </span>
     </div>
   </div>
 </nav>

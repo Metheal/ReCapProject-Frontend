@@ -31,31 +31,11 @@ export class ColorComponent implements OnInit {
       this.success = response.success;
       this.message = response.message;
       this.dataLoaded = true;
-      this.sentColorNames();
+      this.sendColorNames();
     });
   }
 
-  // addColorNameToParams(colorName: string): void {
-  //   if (this.currentFilter) {
-  //     this.params.replace(this.currentFilter, colorName);
-  //     this.currentFilter = colorName;
-  //   } else {
-  //     this.params += '?' + this.propName + '=' + colorName;
-  //     this.currentFilter = colorName;
-  //   }
-  //   this.setParams.emit(this.propName + '=' + colorName);
-  //   this.allColors = false;
-  // }
-
-  // resetParams(): void {
-  //   if (this.currentFilter) {
-  //     this.params = '';
-  //     this.setParams.emit(this.propName + '=');
-  //   }
-  //   this.allColors = true;
-  // }
-
-  sentColorNames(): void {
+  sendColorNames(): void {
     let colorNames: string[] = [];
     this.colors.forEach((color) => colorNames.push(color.colorName));
     this.colorNames.emit(colorNames);

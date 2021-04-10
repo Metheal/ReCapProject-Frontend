@@ -40,6 +40,9 @@
 
 <!-- Button trigger modal -->
 <div class="float-start">
+  <p *ngIf="!checkFindexScore()" class="alert alert-danger" role="alert">
+    Findeks Puaniniz ({{ customer.findexScore }}) bu araci kiralamak icin yeterli degil!
+  </p>
   <p *ngIf="carAvailable === false" class="alert alert-danger" role="alert">
     Arac belirtilen tarihte uygun degil!
   </p>
@@ -62,7 +65,8 @@
     class="btn btn-primary"
     [disabled]="
       rentalAddForm.invalid ||
-      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate
+      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate ||
+      !checkFindexScore()
     "
     (click)="checkAvailability()"
   >
@@ -74,7 +78,8 @@
     class="btn btn-primary"
     [disabled]="
       rentalAddForm.invalid ||
-      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate
+      rentalAddForm.value.returnDate <= rentalAddForm.value.rentDate ||
+      !checkFindexScore()
     "
     data-bs-toggle="modal"
     data-bs-target="#paymentModal"

@@ -120,6 +120,24 @@
             />
             <label for="description">Aciklama</label>
           </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              id="findexScore"
+              formControlName="findexScore"
+              class="form-control"
+              placeholder="Findeks Puani"
+              min="0"
+              max="1900"
+              [ngClass]="{
+                'is-invalid':
+                  carUpdateForm.get('findexScore').touched &&
+                  carUpdateForm.get('findexScore').invalid
+              }"
+            />
+            <label for="findexScore">Findeks Puani</label>
+          </div>
         </form>
       </div>
       <div class="card-footer">

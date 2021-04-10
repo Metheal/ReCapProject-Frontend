@@ -42,7 +42,16 @@
   </div>
   <div class="col-md-5">
     <div class="card">
-      <div class="card-header">Arac Detaylari</div>
+      <div class="card-header">
+        Arac Detaylari
+        <a
+          *ngIf="user && user.role === 'admin'"
+          routerLink="/carUpdate/{{ car.carID }}"
+          class="btn btn-outline-primary float-end"
+        >
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </a>
+      </div>
       <div class="card-body">
         <table class="table table-striped mt-2">
           <tbody>
@@ -74,11 +83,24 @@
               <th scope="row">Aciklama</th>
               <td>{{ car.description }}</td>
             </tr>
+            <tr>
+              <th scope="row">Findeks Puani</th>
+              <td>{{ car.findexScore }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
       <div class="card-footer">
-        <app-rental-add [car]="car"></app-rental-add>
+        <app-rental-add
+          *ngIf="customer"
+          [car]="car"
+          [customer]="customer"
+        ></app-rental-add>
+        <div *ngIf="!user">Teklif almak ve kiralamak icin giris yapiniz</div>
+        <div *ngIf="user && !customer">
+          Teklif almak ve kiralamak icin profilinizden musteri bilgilerinizi
+          guncelleyiniz
+        </div>
       </div>
     </div>
   </div>

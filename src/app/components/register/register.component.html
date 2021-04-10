@@ -1,0 +1,95 @@
+<main class="form-signin">
+  <form [formGroup]="registerForm">
+    <h1 class="h3 mb-3 fw-normal">Simdi Kaydolun</h1>
+
+    <div class="form-floating">
+      <input
+        type="firstName"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('firstName').touched &&
+            registerForm.get('firstName').invalid
+        }"
+        id="firstName"
+        placeholder="Isim"
+        formControlName="firstName"
+      />
+      <label for="firstName">Isim</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="lastName"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('lastName').touched &&
+            registerForm.get('lastName').invalid
+        }"
+        id="lastName"
+        placeholder="Soyisim"
+        formControlName="lastName"
+      />
+      <label for="lastName">Soyisim</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('email').touched &&
+            registerForm.get('email').invalid
+        }"
+        id="email"
+        placeholder="E-posta"
+        formControlName="email"
+      />
+      <label for="email">E-posta</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('password').touched &&
+            registerForm.get('password').invalid
+        }"
+        id="password"
+        placeholder="Parola"
+        formControlName="password"
+      />
+      <label for="password">Parola</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('confirmPassword').touched &&
+            (registerForm.get('confirmPassword').invalid ||
+              registerForm.value.password !==
+                registerForm.value.confirmPassword)
+        }"
+        id="confirmPassword"
+        placeholder="Parolayi dogrulayin"
+        formControlName="confirmPassword"
+      />
+      <label for="confirmPassword">Parolayi dogrulayin</label>
+    </div>
+
+    <button
+      class="w-100 btn btn-lg btn-primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+      (click)="register()"
+    >
+      Kaydol
+    </button>
+    <p class="mt-5 mb-3 text-muted text-center">
+      &copy; 2021 Car Rental Project
+    </p>
+  </form>
+</main>

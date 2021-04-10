@@ -15,29 +15,52 @@ import { BrandAddComponent } from './components/brand/brand-add/brand-add.compon
 import { CarUpdateComponent } from './components/car/car-update/car-update.component';
 import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
 import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginGuard } from './guards/login.guard';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: 'cars', component: CarComponent },
   { path: 'cars/color/:colorName', component: CarComponent },
   { path: 'cars/brand/:brandName', component: CarComponent },
   { path: 'carDetail/:carID', component: CarDetailComponent },
-  { path: 'carAdd', component: CarAddComponent },
-  { path: 'carUpdate/:carID', component: CarUpdateComponent },
+  { path: 'carAdd', component: CarAddComponent, canActivate: [LoginGuard] },
+  {
+    path: 'carUpdate/:carID',
+    component: CarUpdateComponent,
+    canActivate: [LoginGuard],
+  },
   { path: 'rentals', component: RentalComponent },
   { path: 'rent/:carID', component: RentalAddComponent },
   { path: 'users', component: UserComponent },
+  {
+    path: 'userDetail/:userID',
+    component: UserDetailComponent,
+    canActivate: [LoginGuard],
+  },
   { path: 'customers', component: CustomerComponent },
   { path: 'colors', component: ColorComponent },
-  { path: 'colorUpdate/:colorID', component: ColorUpdateComponent },
-  { path: 'colorAdd', component: ColorAddComponent },
+  {
+    path: 'colorUpdate/:colorID',
+    component: ColorUpdateComponent,
+    canActivate: [LoginGuard],
+  },
+  { path: 'colorAdd', component: ColorAddComponent, canActivate: [LoginGuard] },
   { path: 'brands', component: BrandComponent },
-  { path: 'brandUpdate/:brandID', component: BrandUpdateComponent },
-  { path: 'brandAdd', component: BrandAddComponent },
+  {
+    path: 'brandUpdate/:brandID',
+    component: BrandUpdateComponent,
+    canActivate: [LoginGuard],
+  },
+  { path: 'brandAdd', component: BrandAddComponent, canActivate: [LoginGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '', pathMatch: 'full', component: CarComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

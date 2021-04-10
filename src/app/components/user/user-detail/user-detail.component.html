@@ -1,0 +1,135 @@
+<div *ngIf="user">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="user-detai-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#user-detai"
+        type="button"
+        role="tab"
+        aria-controls="user-detai"
+        aria-selected="true"
+      >
+        Kullanici Bilgileri
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="customer-details-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#customer-details"
+        type="button"
+        role="tab"
+        aria-controls="customer-details"
+        aria-selected="false"
+      >
+        Musteri Kimligi
+      </button>
+    </li>
+    <li *ngIf="customerID" class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="rental-details-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#rental-details"
+        type="button"
+        role="tab"
+        aria-controls="rental-details"
+        aria-selected="false"
+      >
+        Kiralamalar
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="user-detai"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+    >
+      <div class="col-md-12" *ngIf="updateUserForm">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="updateUserForm" class="form">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  id="email"
+                  formControlName="eMail"
+                  class="form-control"
+                  placeholder="E-posta"
+                  [ngClass]="{
+                    'is-invalid':
+                      updateUserForm.get('eMail').touched &&
+                      updateUserForm.get('eMail').invalid
+                  }"
+                />
+                <label for="email">E-posta</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  id="firstName"
+                  formControlName="firstName"
+                  class="form-control"
+                  placeholder="Isim"
+                  [ngClass]="{
+                    'is-invalid':
+                      updateUserForm.get('firstName').touched &&
+                      updateUserForm.get('firstName').invalid
+                  }"
+                />
+                <label for="firstName">Isim</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  id="lastName"
+                  formControlName="lastName"
+                  class="form-control"
+                  placeholder="Soyisim"
+                  [ngClass]="{
+                    'is-invalid':
+                      updateUserForm.get('lastName').touched &&
+                      updateUserForm.get('lastName').invalid
+                  }"
+                />
+                <label for="lastName">Soyisim</label>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="updateUser()">
+              Guncelle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="customer-details"
+      role="tabpanel"
+      aria-labelledby="customer-details-tab"
+    >
+      <app-customer-detail
+        *ngIf="user"
+        [userID]="user.userID"
+        (customerID)="getCustomerID($event)"
+      ></app-customer-detail>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="rental-details"
+      role="tabpanel"
+      aria-labelledby="rental-details-tab"
+    >
+      <div *ngIf="customerID">
+        <app-rental-detail [customerID]="customerID"></app-rental-detail>
+      </div>
+    </div>
+  </div>
+</div>

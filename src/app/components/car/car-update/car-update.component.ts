@@ -58,6 +58,10 @@ export class CarUpdateComponent implements OnInit {
       dailyPrice: [this.car.dailyPrice, Validators.required],
       modelYear: [this.car.modelYear, Validators.required],
       description: [this.car.description, Validators.required],
+      findexScore: [
+        this.car.findexScore,
+        [Validators.required, Validators.min(0), Validators.max(1900)],
+      ],
     });
   }
 
@@ -114,14 +118,7 @@ export class CarUpdateComponent implements OnInit {
         this.router.navigate(['/cars']);
       },
       (responseError) => {
-        if (responseError.error.Errors.length > 0) {
-          for (let i = 0; i < responseError.error.Errors.length; i++) {
-            this.toastrService.error(
-              responseError.error.Errors[i].ErrorMessage,
-              'Doğrulama hatası'
-            );
-          }
-        }
+        this.toastrService.error(responseError.error);
       }
     );
   }

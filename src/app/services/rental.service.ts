@@ -8,31 +8,37 @@ import { RentalDto } from '../models/rentalDto';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RentalService {
   constructor(private httpClient: HttpClient) {}
 
-  path = environment.apiURL + '/api/rentals';
+  path = environment.apiURL + '/api/rentals/';
 
   getRentals(): Observable<ListResponseModel<Rental>> {
-    return this.httpClient.get<ListResponseModel<Rental>>(
-      this.path + '/getall'
-    );
+    return this.httpClient.get<ListResponseModel<Rental>>(this.path + 'getall');
   }
 
   getRentalDetails(): Observable<ListResponseModel<RentalDto>> {
     return this.httpClient.get<ListResponseModel<RentalDto>>(
-      this.path + '/getrentaldetails'
+      this.path + 'getrentaldetails'
     );
   }
 
   add(rental: Rental): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.path + '/add', rental);
+    return this.httpClient.post<ResponseModel>(this.path + 'add', rental);
   }
 
   getRentalByID(id: number): Observable<SingleResponseModel<RentalDto>> {
     return this.httpClient.get<SingleResponseModel<RentalDto>>(
-      this.path + '/getdtobyid?id=' + id
+      this.path + 'getdtobyid?id=' + id
+    );
+  }
+
+  getAllByCustomerID(id: number): Observable<ListResponseModel<Rental>> {
+    return this.httpClient.get<ListResponseModel<Rental>>(
+      this.path + 'getallbycustomerid?id=' + id
     );
   }
 
@@ -43,7 +49,7 @@ export class RentalService {
   ): Observable<boolean> {
     return this.httpClient.get<boolean>(
       this.path +
-        '/getsinglebycarid?carID=' +
+        'getsinglebycarid?carID=' +
         carID +
         '&rentDate=' +
         rentDate +
