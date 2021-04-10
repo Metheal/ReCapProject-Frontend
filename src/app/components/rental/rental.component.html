@@ -1,7 +1,8 @@
-<table class="table">
+<table *ngIf="rentalsDto" class="table table-striped table-hover">
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">RentalID</th>
       <th scope="col">Arac</th>
       <th scope="col">Musteri</th>
       <th scope="col">Kiralanma</th>
@@ -9,10 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let rental of rentalsDto">
+    <tr *ngFor="let rental of rentalsDto; index as i">
+      <td>{{ i + 1 }}</td>
       <td>{{ rental.rentalID }}</td>
       <td>{{ rental.carName }}</td>
-      <td>{{ rental.customerFirstName }} {{rental.customerLastName }}</td>
+      <td>{{ rental.customerFirstName }} {{ rental.customerLastName }}</td>
       <td>{{ rental.rentDate }}</td>
       <td>{{ rental.returnDate }}</td>
     </tr>

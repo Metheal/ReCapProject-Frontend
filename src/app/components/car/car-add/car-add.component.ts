@@ -48,7 +48,7 @@ export class CarAddComponent implements OnInit {
       description: ['', Validators.required],
       findexScore: [
         '',
-        [(Validators.required, Validators.min(0), Validators.max(1900))],
+        [Validators.required, Validators.min(0), Validators.max(1900)],
       ],
     });
   }

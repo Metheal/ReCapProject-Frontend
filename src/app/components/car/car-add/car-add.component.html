@@ -129,6 +129,8 @@
               formControlName="findexScore"
               class="form-control"
               placeholder="Findeks Puani"
+              min="0"
+              max="1900"
               [ngClass]="{
                 'is-invalid':
                   carAddForm.get('findexScore').touched &&

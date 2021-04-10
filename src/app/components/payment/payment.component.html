@@ -63,7 +63,7 @@
             />
             <label for="cardHolderName">Kart Uzerindeki Ismi Girin</label>
           </div>
-          <div class="row">
+          <div class="d-flex gap-3">
             <div class="form-floating mb-3" style="width: 50%">
               <input
                 formControlName="expirationMonth"
@@ -71,7 +71,7 @@
                   paymentAddForm.get('expirationMonth').value | number: '2.0'
                 "
                 type="number"
-                min="0"
+                min="1"
                 max="12"
                 id="expirationMonth"
                 class="form-control"
@@ -109,7 +109,7 @@
               id="creditCardCVV"
               class="form-control"
               max="999"
-              min="111"
+              min="100"
               placeholder="Kartin Arkasindaki Kodu Girin"
               [ngClass]="{
                 'is-invalid':
