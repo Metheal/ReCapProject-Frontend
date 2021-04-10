@@ -1,27 +1,72 @@
 # ReCapProjectFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+Bu proje <a href="https://github.com/Metheal/ReCapProject">ReCapProject</a> isimli projenin Front-end kismidir.  
+`Angular CLI version 11.2.3.` ile yazilmistir.  
+Calistirmak icin cmd ya da terminal uzerinde `ng serve -o` yazin. Tarayici uzerinde `http://localhost:4200/` adresinde gelistirme sunucusunda acilacaktir.  
 
-## Development server
+## Ozellikler:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Kullanici icin:
 
-## Code scaffolding
+- Kayit olma
+- Kullanici ve Musteri kimligini guncelleme
+- Arac kiralama
+- Sonraki kiralamalar icin kredi kartini kaydetme
+- Kiralamalarini listeleme
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Yonetici icin:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Arac ekleme - duzenleme - silme
+- Arac resimleri ekleme - silme
+- Renk ekleme - duzenleme - silme
+- Marka ekleme - duzenleme - silme
+- Tum kullanicilari ve musterileri listeleme - duzenleme - silme
+- Tum kiralamalari listeleme
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Ekran Goruntuleri:
 
-## Running end-to-end tests
+### Kullanici bakis acisiyla: 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![](project_images/kullanici/1.png)
 
-## Further help
+![](project_images/kullanici/2.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![](project_images/kullanici/3.png)
+
+![](project_images/kullanici/4.png)
+
+![](project_images/kullanici/5.png)
+
+![](project_images/kullanici/6.png)
+
+![](project_images/kullanici/7.png)
+
+![](project_images/kullanici/8.png)
+
+![](project_images/kullanici/9.png)
+
+![](project_images/kullanici/10.png)
+
+### Yonetici bakis acisiyla: 
+
+![](project_images/yonetici/1.png)
+
+![](project_images/yonetici/2.png)
+
+![](project_images/yonetici/3.png)
+
+![](project_images/yonetici/4.png)
+
+![](project_images/yonetici/5.png)
+
+![](project_images/yonetici/6.png)
+
+![](project_images/yonetici/7.png)
+
+![](project_images/yonetici/8.png)
+
+![](project_images/yonetici/9.png)
+
+![](project_images/yonetici/10.png)
